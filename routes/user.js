@@ -41,14 +41,14 @@ router.get('/login', checkNotAuthenticated, (req, res) => {
     res.render('loginsystem/login.ejs')
 })
 // passport local login
-/*router.post('/login', checkNotAuthenticated, passport.authenticate('login', {
+router.post('/login', checkNotAuthenticated, passport.authenticate('login', {
     successRedirect: '/',
     failureRedirect: '/user/login',
     failureFlash: true
-})) */
+}))
 
 // Validate an existing user and issue a JWT
-router.post('/login', function(req, res, next) {
+/* router.post('/login', function(req, res, next) {
     passport.authenticate('login', function(err, user, info) {
         if (err) { return next(err); }
         if (!user) { 
@@ -92,7 +92,7 @@ return res.json({
 });
 });
 
-/* router.get('/protected', passport.authenticate('jwt', { session: false }), (req, res, next) => {
+router.get('/protected', passport.authenticate('jwt', { session: false }), (req, res, next) => {
     res.status(200).send('If you get this data, you have been authenticated via JWT!');
 }); */
 

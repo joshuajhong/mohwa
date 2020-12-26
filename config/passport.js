@@ -39,7 +39,7 @@ function initialize(passport) {
 
 module.exports = initialize
 
-
+/*
 // File: ./config/passport
 const JwtStrategy = require('passport-jwt').Strategy
 const ExtractJwt = require('passport-jwt').ExtractJwt;
@@ -84,3 +84,4 @@ passport.use('jwt', new JwtStrategy(options, function(jwt_payload, done) {
     });
     
 }));
+*/
