@@ -1,0 +1,25 @@
+<div class="form-group">
+    <label for="title">Title</label>
+    <input required value="<%= blog.title %>"  type="text" name="title" id="title" class="form-control">
+</div>
+<div class="form-group">
+    <label for="author">Author</label>
+    <input required value="<%= blog.author %>" type="text" name="author" id="author" class="form-control">
+</div>
+<div class="form-group">
+    <label for="description">Description</label>
+    <textarea required name="description" id="description" class="form-control"><%= blog.description %></textarea>
+</div>
+<div class="form-group">
+    <label for="markdown">Markdown</label>
+    <textarea name="markdown" id="markdown" class="form-control"><%= blog.markdown %></textarea>
+</div>
+
+<div class="form-group">
+    <label for="cover">Cover Image</label>
+    <input type="file" name="cover" class="form-control"> <!-- value= ? how to get image??? --> 
+</div>
+
+
+<a href="/blog" class="btn btn-danger"><i class="fas fa-window-close"></i></a>
+<button type="submit" class="btn btn-success"><i class="fas fa-save"></i></button>

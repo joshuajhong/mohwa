@@ -1,11 +1,10 @@
 function getOffSet(){
-  var _offset = 0;
+  var _offset = -100;
   var windowHeight = window.innerHeight;
 
- if(windowHeight > 830) {
-   _offset = 0;
- }
-
+ /* if(windowHeight > 780) {
+ /  _offset = -500;
+  } */
   return _offset;
 }
 
@@ -13,7 +12,7 @@ function setParallaxPosition($doc, multiplier, $object){
   var offset = getOffSet();
   var from_top = $doc.scrollTop(),
     bg_css = 'center ' + (multiplier * from_top - offset) + 'px';
-  $object.css({"background-position" : bg_css });
+    $object.css({"background-position" : bg_css });
 }
 
 // Parallax function
@@ -28,63 +27,65 @@ var background_image_parallax = function($object, multiplier, forceSet){
     setParallaxPosition($doc, multiplier, $object);
   } else {
     $(window).scroll(function(){
-      setParallaxPosition($doc, multiplier, $object);
+    setParallaxPosition($doc, multiplier, $object);
     });
   }
 };
 
-background_image_parallax($("#HOME"), 0.10, false);
+background_image_parallax($("#ABOUT"), 0, false);
 
 // Paralax number 2
 $(window).scroll(function() {
   var scrolledY = $(window).scrollTop();
-   if (window.matchMedia("(max-width: 767px)").matches) {
-     $('#ABOUT').css('background-position', '-200px ' + ((scrolledY)) + 'px');
+   if (window.matchMedia("(max-width: 830px)").matches) {
+     $('#HOME').css('background-position', '-50px ' + ((scrolledY)) + 'px');
+     $('#MUSIC').css('background-position', '0px ' + ((scrolledY)) + 'px');
    } else {
-     $('#ABOUT').css('background-position', '0px ' + ((scrolledY)) + 'px');
+     $('#HOME').css('background-position', '0px ' + ((scrolledY)) + 'px');
+     $('#MUSIC').css('background-position', '0px ' + ((scrolledY)) + 'px');
    }
 });
 
-  // Detect window scroll and update navbar
-  $(window).scroll(function(e){
-    if($(document).scrollTop() > 10) {
-      $('.tm-navbar').addClass("scroll");
-    } else {
-      $('.tm-navbar').removeClass("scroll");
-    }
-  });
+// Detect window scroll and update navbar
+$(window).scroll(function(e){
+  if($(document).scrollTop() > 10) {
+    $('.tm-navbar').addClass("scroll");
+  } else {
+    $('.tm-navbar').removeClass("scroll");
+  }
+});
 
-  // Close mobile menu after click
-  $('.navbar-collapse a').click(function(){
-  $(".navbar-collapse").collapse('hide');
-  });
+// Close mobile menu after click
+$('.navbar-collapse a').click(function(){
+$(".navbar-collapse").collapse('hide');
+});
 
-  $('.navbar-collapse button').click(function(){
-  $(".navbar-collapse").collapse('hide');
-  });
+$('.navbar-collapse button').click(function(){
+$(".navbar-collapse").collapse('hide');
+});
 
-  // Scroll to corresponding section with animation
-  $('#tmNav').singlePageNav({
-    'easing': 'easeInOutExpo',
-    'speed': 600
-  });
+// Scroll to corresponding section with animation
+$('#tmNav').singlePageNav({
+  'easing': 'easeInOutExpo',
+  'speed': 600
+});
 
-  // Add smooth scrolling to all links
-  // https://www.w3schools.com/howto/howto_css_smooth_scroll.asp
-  $("a").on('click', function(event) {
-    if (this.hash !== "") {
-      event.preventDefault();
-      var hash = this.hash;
+// Add smooth scrolling to all links
+// https://www.w3schools.com/howto/howto_css_smooth_scroll.asp
+$("a").on('click', function(event) {
+  if (this.hash !== "") {
+    event.preventDefault();
+    var hash = this.hash;
 
-      $('html, body').animate({
-        scrollTop: $(hash).offset().top
-      }, 600, 'easeInOutExpo', function(){
-        window.location.hash = hash;
-      });
-    } // End if
-  });
+    $('html, body').animate({
+      scrollTop: $(hash).offset().top
+    }, 600, 'easeInOutExpo', function(){
+      window.location.hash = hash;
+    });
+  } // End if
+});
 
-  $(function(){
+$(function(){
   // Pop up
   $('.tm-gallery').magnificPopup({
     delegate: 'a',
@@ -166,6 +167,7 @@ $(window).scroll(function() {
   });
 });
 
+//flash - prevent simultaneous video playback - pauses other playing videos upon play
 $(document).ready(function(e) {
     $('audio,video').bind('play', function() {
     activated = this;
@@ -174,7 +176,6 @@ $(document).ready(function(e) {
     });
 });
 
-//flash - prevent simultaneous video playback - pauses other playing videos upon play
 $(".video-js").click(function(){
     activated = this;
     $('.video-js').each(function() {
@@ -183,12 +184,7 @@ $(".video-js").click(function(){
 });
 });
 
-// Scroll top function for other PAGES
-function topFunction2() {
-  document.body.scrollTop = 0; // For Safari
-  document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
-}
-
+// Show and hide header on scroll
 var prevScrollpos = window.pageYOffset;
 window.onscroll = function() {
 var currentScrollPos = window.pageYOffset;
@@ -215,31 +211,35 @@ $(document).ready(function() {
   });
 });
 
-// chat box
-function openForm() {
-   document.getElementById("myForm").style.display = "block";
- }
+// header carousel mobile only
+var slideIndex = 1;
+showSlides(slideIndex);
 
- function closeForm() {
-   document.getElementById("myForm").style.display = "none";
- }
+function plusSlides(n) {
+  showSlides(slideIndex += n);
+}
 
- $(() => {
- $("#send").click(()=>{
-   sendMessage({
-       user: `User${Math.floor(Math.random() * 1000000)}`,
-       message:$("#message").val(),
-       formattedTime: new Date()});
-     })
-   getMessages()
- })
+function showSlides(n) {
+  var i;
+  var slides = document.getElementsByClassName("mySlides");
+  if (window.matchMedia("(max-width: 767px)").matches) {
+    if (n > slides.length) {slideIndex = 1}
+    if (n < 1) {slideIndex = slides.length}
+    for (i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+    }
+    slides[slideIndex-1].style.display = "block";
+  }
+}
 
- function getMessages(){
-   $.get('http://localhost:5000/messages', (data) => {
-   data.forEach(addNewMessage);
-   })
- }
+// welcome autoscroll
+const welcomeContainer = document.getElementById('welcome');
+const welcomeScrollWidth = welcomeContainer.scrollWidth;
 
- function sendMessage(message){
-   $.post('http://localhost:5000/messages', message)
- }
+window.addEventListener('load', () => {
+  self.setInterval(() => {
+    if (welcomeContainer.scrollLeft !== welcomeScrollWidth) {
+      welcomeContainer.scrollTo(welcomeContainer.scrollLeft + 1, 0);
+    }
+  }, 15);
+});

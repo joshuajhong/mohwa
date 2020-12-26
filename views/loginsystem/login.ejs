@@ -1,0 +1,58 @@
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <meta name="keywords" content="MOHWA, MUSIC, GUITAR, MOHWA music" />
+    <meta name="description" content="Guitar instrumental music" />
+    <meta name="author" content="MOHWA" />
+    <title>Mohwa | login</title>
+    <link rel="stylesheet" href="../fontawesome-5.5/css/all.min.css" />
+    <link rel="stylesheet" href="../vendor/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../css/main.css" />
+    <link rel="stylesheet" href="../css/login.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@300&display=swap" rel="stylesheet" type="text/css">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon/favicon-16x16.png">
+    <link rel="manifest" href="images/favicon/site.webmanifest">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+  </head>
+
+<div class="limiter">
+    <div class="container-login100">
+        <div class="wrap-login100">
+            <form class="login100-form validate-form" action="/user/login" method="POST">
+
+                <span class="login100-form-title p-b-34 p-t-27">
+                    Log in
+                </span>
+
+                <div class="wrap-input100 validate-input" data-validate = "Enter email">
+                    <input class="input100" id="email" type="email" name="email" placeholder="Enter username or email" required>
+                    <span class="focus-input100 fa" data-placeholder="&#xf007;"></span>
+                </div>
+
+                <div class="wrap-input100 validate-input" data-validate="Enter password">
+                    <input class="input100" id="password" type="password" name="password" placeholder="Password" required>
+                    <span class="focus-input100 fa" data-placeholder="&#xf023;"></span>
+                </div>
+
+                <div class="txt1">
+                <% if (messages.error) { %>
+                    <%= messages.error %>
+                <% } %>
+                </div>
+
+                <div class="container-login100-form-btn">
+                    <button class="login100-form-btn" type="submit">
+                        Login
+                    </button>
+                </div>
+
+               <!-- <div class="text-center p-t-90">
+                    <a class="txt1" href="/user/register">Register</a>
+                </div> -->
+            </form>
+        </div>
+    </div>
+</div>

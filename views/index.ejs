@@ -7,41 +7,40 @@
     <meta name="keywords" content="MOHWA, MUSIC, GUITAR, MOHWA music" />
     <meta name="description" content="Guitar instrumental music" />
     <meta name="author" content="MOHWA" />
-    <title>MOHWA</title>
+    <title>Mohwa</title>
     <link rel="stylesheet" href="fontawesome-5.5/css/all.min.css" />
     <link rel="stylesheet" href="slick/slick.css">
     <link rel="stylesheet" href="slick/slick-theme.css">
     <link rel="stylesheet" href="magnific-popup/magnific-popup.css">
-    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css" />
     <link rel="stylesheet" href="css/main.css" />
     <link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@300&display=swap" rel="stylesheet" type="text/css">
     <link rel="stylesheet" type="text/css" href="css/jquery.fancybox.min.css">
-    <link rel="apple-touch-icon" sizes="180x180" href="images/favicon/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon/favicon-16x16.png">
-    <link rel="manifest" href="images/favicon/site.webmanifest">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
   </head>
   <body>
     <header id="header">
       <div class="container-fluid">
-        <div class="welcome">
-          <a><i class="fas fa-user"></i> Welcome user: <%= name %> </a>
+        <div class="welcome" id="welcome">
+          <a><i class="fas fa-user"></i> Hi <%= name %> </a>
         </div>
         <ul class="header-menu">
-          <div class="header-right">
-          <li class="header-item"><a href="pages/contact.html">Contact</a></li>
-          <li class="header-item"><a href="pages/bookings.html">Bookings</a></li>
-          <li class="header-item"><%- code %></li>
+          <div class="header-right d-md-block">
+              <li class="header-item mySlides"><a href="../blog">Blog</a></li>
+              <li class="header-item mySlides"><a href="/contact">Contact</a></li>
+              <li class="header-item mySlides"><a href="/bookings">Bookings</a></li>
+              <li class="header-item mySlides"><%- code %></li>
+          </div>
+          <a class="prev d-md-none" onclick="plusSlides(-1)" role="button"><i class="fas fa-arrow-alt-circle-left"></i></a>
+          <a class="next buttonRight d-md-none" onclick="plusSlides(1)" role="button"><i class="fas fa-arrow-alt-circle-right"></i></a>
         </ul>
-      </div>
       </div>
     </header>
   <!-- Navigation -->
   <nav class="navbar navbar-expand-md tm-navbar" id="tmNav">
     <div class="container-fluid">
       <a href="#HOME"><button accesskey="h" class="homebutton">
-          <img src=images/MOHWALogo.png class="img-fluid logo-image" alt="MOHWA logo">
+          <img src="https://res.cloudinary.com/mohwa/image/upload/v1608465343/MOHWALogo_zc4jos.png" class="img-fluid logo-image" alt="MOHWA logo">
       </button></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <i class="fas fa-bars navbar-toggler-icon"></i>
@@ -55,7 +54,7 @@
               <a class="nav-link tm-nav-link" href="#ABOUT">DISCOVER</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link tm-nav-link" href="#MUSIC">MUSIC</a>
+            <a class="nav-link tm-nav-link" href="#MUSIC">MUSIC <i class="fas fa-music"></i></a>
           </li>
           <li class="nav-item">
                 <a class="nav-link tm-nav-link" href="#GALLERY">GALLERY</a>
@@ -68,14 +67,14 @@
                 <a class="nav-link tm-nav-link navheader" href="">MORE <i class="fas fa-angle-down"></i></a>
                   <div class="dropdown-content">
                     <a id="archives" class="dropdown-button">
-                      ARCHIVES <i class="fas fa-external-link-alt"></i>
+                      UPDATES <i class="fas fa-newspaper"></i>
                     </a>
                     <script>
                       document.getElementById("archives").onclick = function () {
                       location.href = "pages/archives.html";
                       };
                     </script>
-                    <a class="dropdown-button">BLOG <i class="fas fa-external-link-alt"></i></a>
+                    <a class="dropdown-button">TOUR</a>
                   </div>
             </div>
           </li>
@@ -88,7 +87,7 @@
     <section id="HOME" class="text-white tm-font-big">
       <div class="text-center tm-hero-text-container">
         <div class="tm-hero-text-container-inner animate__animated animate__zoomInLeft">
-            <img class="headerlogo" src="images/MOHWALogo.png"></img>
+            <img class="headerlogo" src="https://res.cloudinary.com/mohwa/image/upload/v1608465343/MOHWALogo_zc4jos.png"></img>
               <h1 class="tm-hero-title">MOHWA</h1>
         </div>
       </div>
@@ -149,9 +148,9 @@
                 <h3 class="tm-text-primary mb-4 text-center">SOCIAL MEDIA</h3>
                   <article class="tm-intro-text2">
                     <ul>
-                      <li class="socialmediaicons"><a href=https://ko-fi.com/mohwa/ target="_blank"><img src=images/BuyMeACoffee_dark@2x.png height="45" alt=Ko-fi></a></li>
+                      <li class="socialmediaicons"><a href=https://ko-fi.com/mohwa/ target="_blank"><img src=images/socialmediaicons/BuyMeACoffee_dark@2x.png height="45" alt=Ko-fi></a></li>
                       <li class="socialmediaicons"><a href=https://www.youtube.com/channel/UCiEFin1KR5MN467s_MVCGDg/ target="_blank"><img src=images/youtube/yt_icon_mono_dark.png height="45" alt=YouTube></a></li>
-                      <li class="socialmediaicons"><a href=https://www.instagram.com/mo.hwa/ target="_blank"><img src=images/instawhite.png width="45" height="45" alt=Instagram></a></li>
+                      <li class="socialmediaicons"><a href=https://www.instagram.com/mo.hwa/ target="_blank"><img src=images/socialmediaicons/instawhite.png width="45" height="45" alt=Instagram></a></li>
                     </ul>
                   </article>
                 </div>
@@ -166,19 +165,24 @@
           <div class="col-lg-12 tm-content-box">
             <h2 class="text-white text-center mb-4">MUSIC</h2>
             <p class="mx-auto tm-section-desc text-center">
-                Listen to MOHWA's playlists: <a><img src=images/whitespotifyicon.png height="20" alt="spotifyicon"></a>
-                <a><img src="images/Apple_Music_Icon_wht.png" height="20" alt="applemusicicon"></a>
+                Listen to Mohwa on: <a><img src=images/socialmediaicons/whitespotifyicon.png height="20" alt="spotifyicon"></a>
+                <a><img src="images/socialmediaicons/Apple_Music_Icon_wht.png" height="20" alt="applemusicicon"></a>
+                <a><img src=images/youtube/yt_icon_mono_dark.png height="20" alt=YouTube></a> 
+                <a><img src="images/socialmediaicons/amazon-music.png" height="20"></a>
               </p>
               <div class="tm-testimonials-carousel">
 				        <figure class="tm-gallery-item">
-                  <iframe class="musicplayer" src="https://open.spotify.com/embed/playlist/09LrGLjWXFEG7IZebWJqfS" allow="encrypted-media"></iframe>
+                  <iframe class="musicplayer" src="https://open.spotify.com/embed/album/7Mqn4hqvrsIovz7Cy0faiF" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>                
                 </figure>
                 <figure class="tm-gallery-item">
-                   <iframe class="musicplayer" allow="autoplay *; encrypted-media *;" style="overflow:hidden;background:transparent;" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation-by-user-activation" src="https://embed.music.apple.com/au/album/rodrigo-y-gabriela/430232348"></iframe>
+                  <iframe class="musicplayer" allow="autoplay *; encrypted-media *;" frameborder="0" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation-by-user-activation" src="https://embed.music.apple.com/au/album/read-her-face-ep/1536795642"></iframe>
                 </figure>
                 <figure class="tm-gallery-item">
-              		<iframe class="musicplayer" scrolling="no" frameborder="0" allowTransparency="true" src="https://www.deezer.com/plugins/player?format=classic&autoplay=false&playlist=true&width=700&height=350&color=007FEB&layout=dark&size=medium&type=playlist&id=30595446&app_id=1"></iframe>
-              	</figure>
+                  <iframe class="musicplayer" src="https://www.youtube-nocookie.com/embed/videoseries?list=OLAK5uy_nmMaHs8JRsVSXhvH93x4lHebXNY7e9vqw" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </figure>
+                <figure class="tm-gallery-item">
+                  <iframe class="musicplayer" id='AmazonMusicEmbedB08LMCY5S2' src='https://music.amazon.com/embed/B08LMCY5S2/?id=6vG3a1sL7i&marketplaceId=ATVPDKIKX0DER&musicTerritory=US'></iframe>
+                </figure>
               </div>
             </div>
         </div>
@@ -195,7 +199,7 @@
             <h3>DISCOGRAPHY</h3>
               <div class="link_bar">
                 <p class="mx-auto tm-section-desc text-center">Hover over an album cover artwork to see its tracklist</p>
-                <p class="mx-auto tm-section-desc text-center"><a href='pages/credits.html' target="_blank">Artwork credits <i class="fas fa-external-link-alt"></i></a></p>
+                <p class="mx-auto tm-section-desc text-center"><a href='/credits'>Artwork credits <i class="fas fa-external-link-alt"></i></a></p>
               </div>
           </div>
         </div>
@@ -203,9 +207,9 @@
           <div class="col-12">
               <div class="mx-auto tm-gallery-container">
                   <div class="grid tm-gallery">
-                     <a href="images/albumcover/readherface.png">
+                     <a href="https://res.cloudinary.com/mohwa/image/upload/v1608464062/albumcovers/readherface_zwdapu.png">
                        <figure class="effect-honey tm-gallery-item">
-                         <img src=images/albumcover/readherface.png alt="read her face. album" class="img-fluid mx-auto">
+                         <img src="https://res.cloudinary.com/mohwa/image/upload/v1608464062/albumcovers/readherface_zwdapu.png" alt="read her face. album" class="img-fluid mx-auto">
                           <figcaption>
                             <div class="discographylist">
                               <ol>
@@ -218,21 +222,9 @@
                           </figcaption>
                       </figure>
                       </a>
-                     <a href="images/albumcover/monkey.png">
-                      <figure class="effect-honey tm-gallery-item">
-                        <img src="images/albumcover/monkey.png" alt="dsfdsds" class="img-fluid mx-auto">
-                          <figcaption>
-                            <div class="discographylist">
-                              <ol>
-                                <li>Monkey Wizard</li>
-                              </ol><span>SINGLE (coming 2021)</span>
-                            </div>
-                        </figcaption>
-                      </figure>
-                      </a>
-                      <a href="images/albumcover/shegrowsdrugs.png">
+                      <a href="https://res.cloudinary.com/mohwa/image/upload/v1608464712/albumcovers/shegrowsdrugs_mdb8te.jpg">
                         <figure class="effect-honey tm-gallery-item">
-                            <img src=images/albumcover/shegrowsdrugs.png alt="she grows drugs. album" class="img-fluid mx-auto">
+                            <img src="https://res.cloudinary.com/mohwa/image/upload/v1608464712/albumcovers/shegrowsdrugs_mdb8te.jpg" alt="she grows drugs. album" class="img-fluid mx-auto">
                             <figcaption>
                               <div class="discographylist">
                                 <ol>
@@ -245,9 +237,9 @@
                             </figcaption>
                           </figure>
                       </a>
-                      <a href="images/albumcover/prodigal.png">
+                      <a href="https://res.cloudinary.com/mohwa/image/upload/v1608464014/albumcovers/prodigal_z70has.png">
                         <figure class="effect-honey tm-gallery-item">
-                          <img src="images/albumcover/prodigal.png" alt="digital art" class="img-fluid mx-auto">
+                          <img src="https://res.cloudinary.com/mohwa/image/upload/v1608464014/albumcovers/prodigal_z70has.png" alt="digital art" class="img-fluid mx-auto">
                           <figcaption>
                             <div class="discographylist">
                               <ol>
@@ -255,14 +247,26 @@
                                 <li>Vicious cycle</li>
                                 <li>Chronic relapse</li>
                                 <li>Narcissist</li>
-                              </ol><span>prodigal EP (2020)</span>
+                              </ol><span>prodigal EP (Coming 2021)</span>
                             </div>
                           </figcaption>
                         </figure>
-                   	  </a>
-                      <a href="images/albumcover/random.png">
+                       </a>
+                      <a href="https://res.cloudinary.com/mohwa/image/upload/v1608464709/albumcovers/monkey_g3a1sk.jpg">
+                      <figure class="effect-honey tm-gallery-item">
+                        <img src="https://res.cloudinary.com/mohwa/image/upload/v1608464709/albumcovers/monkey_g3a1sk.jpg" alt="dsfdsds" class="img-fluid mx-auto">
+                          <figcaption>
+                            <div class="discographylist">
+                              <ol>
+                                <li>Monkey Wizard</li>
+                              </ol><span>SINGLE (coming 2021)</span>
+                            </div>
+                        </figcaption>
+                      </figure>
+                      </a>
+                      <a href="https://res.cloudinary.com/mohwa/image/upload/v1608464713/albumcovers/random_epzjln.jpg">
                         <figure class="effect-honey tm-gallery-item">
-                          <img src="images/albumcover/random.png" alt="ddsds" class="img-fluid mx-auto">
+                          <img src="https://res.cloudinary.com/mohwa/image/upload/v1608464713/albumcovers/random_epzjln.jpg" alt="ddsds" class="img-fluid mx-auto">
                           <figcaption>
                             <div class="discographylist">
                               <ol>
@@ -286,28 +290,28 @@
                 <article class="video">
                  <figure>
                    <a class="fancybox fancybox.iframe" href="https://www.youtube.com/embed/0dRo5Kbgx6c">
-                   <img class="videoThumb" src="https://i.ytimg.com/an_webp/0dRo5Kbgx6c/mqdefault_6s.webp?du=3000&sqp=CMPhyPoF&rs=AOn4CLCUm0VsKFnCln_gAy6GV3Fzsu6MVg"></a>
+                   <img class="videoThumb" src="images/youtube/yt_icon_rgb.png"></a>
                  </figure>
                  <h2 class="videoTitle">Black Skirts</h2>
                </article>
                <article class="video">
                 <figure>
                   <a class="fancybox fancybox.iframe" href="https://www.youtube.com/embed/hn10okvX19E">
-                  <img class="videoThumb" src="https://i.ytimg.com/an_webp/hn10okvX19E/mqdefault_6s.webp?du=3000&sqp=CPij3PoF&rs=AOn4CLB1RMmhzTMyIa_hRI1YElAFvXHI3g"></a>
+                  <img class="videoThumb" src="images/youtube/yt_icon_rgb.png"></a>
                 </figure>
                 <h2 class="videoTitle">Estas Tonne</h2>
               </article>
               <article class="video">
                <figure>
                  <a class="fancybox fancybox.iframe" href="https://www.youtube.com/embed/TQ1eHtdVQPQ">
-                 <img class="videoThumb" src="https://i.ytimg.com/an_webp/TQ1eHtdVQPQ/mqdefault_6s.webp?du=3000&sqp=CMTr3PoF&rs=AOn4CLDCCR1BbNnUXoVoybIG-piq6whmYw"></a>
+                 <img class="videoThumb" src="images/youtube/yt_icon_rgb.png"></a>
                </figure>
                <h2 class="videoTitle">Opal Ocean</h2>
              </article>
              <article class="video">
               <figure>
                 <a class="fancybox fancybox.iframe" href="https://www.youtube.com/embed/VgvaEHbeY2k">
-                <img class="videoThumb" src="https://i.ytimg.com/an_webp/VgvaEHbeY2k/mqdefault_6s.webp?du=3000&sqp=CL-DyfoF&rs=AOn4CLBtJb7zkoHbGHlfjxy7oQA5M6kifw"></a>
+                <img class="videoThumb" src="images/youtube/yt_icon_rgb.png"></a>
               </figure>
               <h2 class="videoTitle">Rodrigo y Gabriela</h2>
             </article>
@@ -338,121 +342,15 @@
       <script data-cfasync="false" src="https://app.ecwid.com/script.js?32131111&data_platform=code&data_date=2020-06-27"></script><script> xProductBrowser("categoriesPerRow=3","views=grid(20,3) list(60) table(60)","categoryView=grid","searchView=list","id=my-store-32131111");</script>
     </div>
   </div>
-
-  <!-- Subscribe Form Starts Here -->
-  <div class="subscribe-form">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12">
-          <div class="section-heading">
-            <div class="line-dec"></div>
-            <h3 class="subscribe-helement">SUBSCRIBE NOW</h3>
-          </div>
-        </div>
-        <div class="col-md-8 offset-md-2">
-          <div class="main-content">
-            <p>For release updates, exclusive videos, and free downloads join the mailing list</p>
-            <div class="container">
-              <form id="subscribe" action="/signup" method="POST">
-                  <div class="col">
-                    <fieldset>
-                        <div class="input-group-prepend">
-                          <input type="text" name="firstName" id="first-name" class="form-control" placeholder="First Name" required>
-                          <input type="text" name="lastName" id="last-name" class="form-control" placeholder="Last Name" required>
-                        </div>
-                      <input name="email" type="email" class="form-control" id="email"
-                      onfocus="if(this.value == 'Your Email...') { this.value = ''; }"
-                  	  onBlur="if(this.value == '') { this.value = 'Your Email...';}"
-                  	  value="Your Email..." required="">
-                      <button type="submit" id="form-submit" class="button">Subscribe Now</button>
-                    </fieldset>
-                  </div>
-              </form>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- Subscribe Form Ends Here -->
 </section>
 
-<button class="open-button sb3 animate__animated animate__heartBeat" onclick="openForm()"></button>
- <div class="chat-popup form-container" id="myForm">
-   <div class="inbox">
-     <button class="inbox__people" onclick="closeForm()">
-       <h4>FORUM</h4>
-     </button>
-       <div class="inbox__messages" id="messageSpace">
-        <div class="incoming__message">
-          <div class="received__message2">
-            <p>Ask a question or leave a comment here. To contact me privately, use the <a href ="../pages/contact.html">CONTACT</a> form</p>
-            <div class="message__info">
-              <span class="message__author2">MOHWA</span><br>
-            </div>
-          </div>
-        </div>
-         <div class="messages__history"></div>
-         <div class="fallback"></div>
-       </div>
-   </div>
-   <form class="message_form">
-     <div class="input-group-prepend">
-     <input id="message" type="text" class="message_form__input" placeholder="Leave a comment" />
-     <button id="send" class="message_form__button" type="submit">
-       Send
-     </button>
-     </div>
-   </form>
- </div>
-
-    <!-- Footer Starts Here -->
-    <footer id="newfooter">
-      <div class="footer">
-        <div class="container">
-          <div class="row">
-            <div class="col-md-12"></div>
-              <div class="col-md-12">
-                <div class="footer-menu">
-                  <ul>
-                    <li><a href="pages/privacy_policy.html">Privacy Policy</a></li>
-                    <li><a href="pages/termsandconditions.html">Terms and Conditions</a></li>
-                    <li><a href="pages/returnsandrefundpolicy.html">Returns and Refunds Policy</a></li>
-                    <li><a href="pages/sitemap.html">Sitemap</a></li>
-                  </ul>
-                </div>
-                <div class="footer-logo">
-                  <ul>
-                    <li class="footer-images"><a href=https://www.instagram.com/mo.hwa/ target="_blank"><img src=images/instawhite.png width="45" height="45" alt=Instagram></a></li>
-                    <li class="footer-images"><a href=https://www.youtube.com/channel/UCiEFin1KR5MN467s_MVCGDg/ target="_blank"><img src=images/youtube/yt_icon_mono_dark.png height="45" alt=YouTube></a> </li>
-                    <li class="footer-images"><a href=https://ko-fi.com/mohwa/ target="_blank"><img src="images/Ko-fi_Logo_RGB_ColorBg.png" height="45" alt="Ko-fi"></a></li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      <!-- Footer Ends Here -->
-  <!-- Sub Footer Starts Here -->
-      <div class="sub-footer">
-        <div class="copyright-text">
-          <div class="text-center small tm-footer">
-          <p class="mb-0">Copyright &copy; 2020 MOHWA</p>
-          </div>
-        </div>
-      </div>
-      <!-- Sub Footer Ends Here -->
-    </footer>
-
-<script src="js/jquery-3.5.1.min.js"></script>
+<script src="vendor/jquery/jquery-3.5.1.min.js"></script>
 <script src="slick/slick.min.js"></script>
 <script src="magnific-popup/jquery.magnific-popup.min.js"></script>
 <script src="js/easing.min.js"></script>
-<script src="js/jquery.singlePageNav.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
+<script src="vendor/jquery/jquery.singlePageNav.min.js"></script>
+<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
 <script src="js/mohwa.js"></script>
-<script src="js/jquery.fancybox.min.js"></script>
-<script src="/socket.io/socket.io.js"></script>
-<script src="js/main.js"></script>
+<script src="vendor/jquery/jquery.fancybox.min.js"></script>
   </body>
 </html>

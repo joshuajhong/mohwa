@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Mohwa | bookings</title>
+  <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="../css/main.css" />
+  <link rel="stylesheet" href="fontawesome-5.5/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@300&display=swap" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+</head>
+
+<body>
+  <section id="bookings" class="tm-section-pad-top tm-parallax-2">
+    <div class="container tm-container-contact">
+      <div class="row">
+          <div class="text-center col-12">
+              <h2 class="tm-section-title mb-4">BOOKINGS</h2>
+              <p class="mb-5">Book MOHWA at house concerts, intimate venues, bars, weddings, corporate and special events.</p>
+          </div>
+
+      <div class="col-sm-12 col-md-12 animate__animated animate__bounceInLeft">
+        <form action="/bookings" method="post" id="g-recaptcha-response">
+          <div class="bookingsection">
+            <h3>Contact details</h3>
+            <input id="name" name="name" type="text" placeholder="Name" class="tm-input" required />
+            <input id="email" name="email" type="email" placeholder="Email" class="tm-input" required />
+            <input id="phone" name="phone" type="tel" placeholder="Phone Number" class="tm-input" required />
+          </div>
+          <div class="bookingsection">
+            <h3>Select a date and time</h3>
+            <input id="date" name="date" type="date" placeholder="Select a date" class="tm-input2" required />
+            <input id="time" name="time" type="time" placeholder="Select a time" class="tm-input2" required />
+          </div>
+          <div class="bookingsection">
+            <h3>Venue details</h3>
+            <input id="venue" name="venue" type="text" placeholder="Venue Name" class="tm-input" required />
+            <input id="address" name="address" type="text" placeholder="Address Line 1" class="tm-input" required />
+            <input id="venueAddress2" name="venueAddress2" type="text" placeholder="Address Line 2" class="tm-input" />
+            <input id="suburb" name="suburb" type="text" placeholder="Suburb" class="tm-input2" />
+            <input id="postcode" name="postcode" type="tel" pattern="[0-9]{4}" placeholder="Postcode" class="tm-input2" required />
+            <select id="state" name="state" class="tm-input2" required>
+                <option disabled selected value> -- State -- </option>
+                <option value="New South Wales">New South Wales</option>
+                <option value="Victoria">Victoria</option>
+                <option value="Queensland">Queensland</option>
+                <option value="South Australia">South Australia</option>
+                <option value="Western Australia">Western Australia</option>
+                <option value="Tasmania">Tasmania</option>
+                <option value="Australian Capital Territory">Australian Capital Territory</option>
+                <option value="Northern Territory">Northern Territory</option>
+            </select>
+          </div>
+          <h3>Message</h3>
+            <textarea id="message" name="message" rows="8" placeholder="Write down any details here" class="tm-input"></textarea>
+            <title>reCAPTCHA demo: Explicit render after an onload callback</title>
+            <script type="text/javascript">
+              var onloadCallback = function() {
+                grecaptcha.render('html_element', {
+                  'sitekey' : '6LesDbYZAAAAAH3zVJTnxv3wN3zUj7dYkLYg9Syc'
+                });
+              };
+            </script>
+          <div id="html_element"></div>
+          <br>
+          <input type="submit" value="Submit" class="contact-button">
+        </form>
+        <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit"
+            async defer>
+        </script>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script src="vendor/jquery/jquery-3.5.1.min.js"></script>
+<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+<script>
+  $("form").submit(function(event) {
+    var recaptcha = $("#g-recaptcha-response").val();
+    if (recaptcha === "") {
+       event.preventDefault();
+       alert("Please check the recaptcha");
+        }
+    });
+ </script>
+</body>
+</html>
