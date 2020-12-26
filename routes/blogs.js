@@ -6,47 +6,6 @@ const { checkAuthenticated, checkNotAuthenticated } = require('../config/auth');
 
 const fs = require('fs') // needed for path.join string error
 const multer = require('multer')
-
-/* const GridFsStorage = require('multer-gridfs-storage')
-const crypto = require('crypto')
-
-// mongoDB
-const mongoose = require('mongoose')
-const promise = mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true,  useCreateIndex: true, useFindAndModify: false, useUnifiedTopology: true })
-const db = mongoose.connection
-db.on('error', error => console.error(error))
-db.once('open', () => console.log('Connected to Mongoose')) */
-
-// Init gfs
-/* let gfs;
-const Grid = require('gridfs-stream');
-db.once('open', () => {
-  // Init stream
-  gfs = Grid(db.db, mongoose.mongo);
-  gfs.collection('uploads');
-});
-
-// Create storage engine
-const storage = new GridFsStorage({
-    db: promise,
-    file: (req, file) => {
-      return new Promise((resolve, reject) => {
-        crypto.randomBytes(16, (err, buf) => {
-          if (err) {
-            return reject(err);
-          }
-          const filename = buf.toString('hex') + path.extname(file.originalname);
-          const fileInfo = {
-            filename: filename,
-            bucketName: 'uploads'
-          };
-          resolve(fileInfo);
-        });
-      });
-    }
-  });
-  const upload = multer({ storage }); */
-
 const uploadPath = path.join('public', Blog.coverImageBasePath)
 const storage = multer.diskStorage({
     destination: uploadPath,
