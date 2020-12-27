@@ -32,7 +32,7 @@ var background_image_parallax = function($object, multiplier, forceSet){
   }
 };
 
-background_image_parallax($("#ABOUT"), 0, false);
+background_image_parallax($("#ABOUT"), 0, false); 
 
 // Paralax number 2
 $(window).scroll(function() {
