@@ -10,8 +10,8 @@ const nodemailer = require('nodemailer');
 let mailTransporter = nodemailer.createTransport({ 
   service: 'gmail', 
   auth: { 
-      user: process.env.DB_USER,
-      pass: process.env.DB_PASS
+    user: process.env.DB_USER,
+    pass: process.env.DB_PASS
   } 
 }); 
 
@@ -34,7 +34,7 @@ router.post('/', (req, res) => {
 
   // send contact form to my email
   let mailContactForm = { 
-    from: 'mohwaguitar@gmail.com', 
+    from: 'mohwaguitar@gmail.com',
     to: 'joshuajhong@gmail.com', 
     subject: 'Contact Form', 
     html: `

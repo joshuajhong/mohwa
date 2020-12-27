@@ -1,3 +1,5 @@
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -17,11 +19,11 @@
     <link rel="manifest" href="images/favicon/site.webmanifest">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
   </head>
-
+<body>
 <div class="limiter">
     <div class="container-login100">
         <div class="wrap-login100">
-            <form class="login100-form validate-form" action="/user/login" method="POST">
+            <form id="g-recaptcha-response" class="login100-form validate-form" action="/user/login" method="POST">
 
                 <span class="login100-form-title p-b-34 p-t-27">
                     Log in
@@ -43,16 +45,36 @@
                 <% } %>
                 </div>
 
+                <title>reCAPTCHA demo: Explicit render after an onload callback</title>
+                <script type="text/javascript">
+                  var onloadCallback = function() {
+                    grecaptcha.render('html_element', {
+                      'sitekey' : '6LesDbYZAAAAAH3zVJTnxv3wN3zUj7dYkLYg9Syc'
+                    });
+                  };
+                </script>
+                <div id="html_element"></div>
+                <br>
+
                 <div class="container-login100-form-btn">
                     <button class="login100-form-btn" type="submit">
                         Login
                     </button>
                 </div>
-
-               <!-- <div class="text-center p-t-90">
-                    <a class="txt1" href="/user/register">Register</a>
-                </div> -->
             </form>
+            <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async defer></script>
         </div>
     </div>
 </div>
+
+<script>
+    $("form").submit(function(event) {
+      var recaptcha = $("#g-recaptcha-response").val();
+      if (recaptcha === "") {
+         event.preventDefault();
+         alert("Please check the recaptcha");
+          }
+      });
+</script>
+</body>
+</html>
