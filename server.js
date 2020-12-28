@@ -10,6 +10,8 @@ const methodOverride = require('method-override')
 const passport = require('passport');
 const session = require('express-session');
 const flash = require('express-flash')
+const helmet = require('helmet')
+app.use(helmet());
 
 const indexRouter = require('./routes/index')
 const blogRouter = require('./routes/blogs') 
@@ -46,7 +48,9 @@ app.use('/contact', contactRouter)
 app.use('/bookings', bookingsRouter)
 app.use('/user', userRouter)
 
-app.listen(process.env.PORT || 3000)
+const http = require('http')
+const server = http.createServer(app);
+server.listen(process.env.PORT || 3000)
 
 // Passport Config
 const initializePassport = require('./config/passport')
