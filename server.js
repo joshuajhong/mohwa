@@ -55,7 +55,6 @@ app.use('/user', userRouter)
 const http = require('http')
 const server = http.createServer(app);
 server.listen(process.env.PORT || 3000)
-app.listen(process.env.PORT || 5000)
 
 // Passport Config
 const initializePassport = require('./config/passport')
