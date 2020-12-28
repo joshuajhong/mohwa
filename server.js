@@ -11,7 +11,11 @@ const passport = require('passport');
 const session = require('express-session');
 const flash = require('express-flash')
 const helmet = require('helmet')
-app.use(helmet());
+app.use(
+  helmet({
+    contentSecurityPolicy: false,
+  })
+);
 
 const indexRouter = require('./routes/index')
 const blogRouter = require('./routes/blogs') 
@@ -51,6 +55,7 @@ app.use('/user', userRouter)
 const http = require('http')
 const server = http.createServer(app);
 server.listen(process.env.PORT || 3000)
+app.listen(process.env.PORT || 5000)
 
 // Passport Config
 const initializePassport = require('./config/passport')
