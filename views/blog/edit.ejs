@@ -1,26 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit: <%= blog.title %></title>
-    <link rel="stylesheet" href="../../vendor/bootstrap/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="../../css/main.css" />
-    <link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@300&display=swap" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="../../fontawesome-5.5/css/all.min.css" />
-
 </head>
 <body>
     <Section id="blogpage">
-    <div class="container">
-        <h1 class="mb-4">Edit Blog</h1>
+        <div class="container">
+            <h1 class="mb-4">Edit Blog</h1>
 
-        <!-- <form action="/blog/<%= blog.slug %>?_method=PUT" method="POST"> -->
-        <form action="/blog/<%= blog.slug %>" enctype="multipart/form-data" method="POST">
-            <%- include('_form_fields') %>
-        </form>
-    </div>
-</Section>
-
+            <!-- <form action="/blog/<%= blog.slug %>?_method=PUT" method="POST"> -->
+            <form action="/blog/<%= blog.slug %>" enctype="multipart/form-data" method="POST">
+                <%- include('_form_fields') %>
+            </form>
+        </div>
+    </Section>
 </body>
-</html>

@@ -1,23 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <meta name="keywords" content="MOHWA, MUSIC, GUITAR, MOHWA music" />
-    <meta name="description" content="Guitar instrumental music" />
-    <meta name="author" content="MOHWA" />
     <title>Mohwa | login</title>
-    <link rel="stylesheet" href="../fontawesome-5.5/css/all.min.css" />
-    <link rel="stylesheet" href="../vendor/bootstrap/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="../css/main.css" />
     <link rel="stylesheet" href="../css/login.css" />
-    <link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@300&display=swap" rel="stylesheet" type="text/css">
-    <link rel="apple-touch-icon" sizes="180x180" href="images/favicon/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon/favicon-16x16.png">
-    <link rel="manifest" href="images/favicon/site.webmanifest">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
   </head>
 <body>
 <div class="limiter">
@@ -62,18 +45,18 @@
                     </button>
                 </div>
             </form>
-            <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async defer></script>
         </div>
     </div>
 </div>
-<script>
-    $("form").submit(function(event) {
-      var recaptcha = $("#g-recaptcha-response").val();
-      if (recaptcha === "") {
-         event.preventDefault();
-         alert("Please check the recaptcha");
-          }
-      });
-</script>
+    <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async defer></script>
+    <script src="../../vendor/jquery/jquery-3.5.1.min.js"></script>
+    <script>
+        $("form").submit(function(event) {
+        var recaptcha = $("#g-recaptcha-response").val();
+        if (recaptcha === "") {
+            event.preventDefault();
+            alert("Please check the recaptcha");
+            }
+        });
+    </script>
 </body>
-</html>
