@@ -14,7 +14,8 @@ const registerValidation = data => {
             .required(),
         confirmPassword: Joi.string()
             .required()
-            .valid(Joi.ref('password'))
+            .valid(Joi.ref('password')),
+        ["g-recaptcha-response"]: Joi.string().required()
     })
     return schema.validate(data)
 }

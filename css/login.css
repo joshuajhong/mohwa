@@ -63,7 +63,6 @@ iframe {
 /*//////////////////////////////////////////////////////////////////
 [ Utility ]*/
 .txt1 {
-  font-family: Poppins-Regular;
   font-size: 13px;
   color: #e5e5e5;
   line-height: 1.5;
@@ -128,7 +127,6 @@ iframe {
 }
 
 .login100-form-title {
-  font-family: Poppins-Medium;
   font-size: 30px;
   color:#d0d0a2;
   line-height: 1.2;
@@ -150,7 +148,6 @@ iframe {
 }
 
 .input100 {
-  font-family: Poppins-Regular;
   font-size: 16px;
   color: #d0d0a2;
   line-height: 1.2;
@@ -248,7 +245,6 @@ iframe {
 }
 
 .login100-form-btn {
-  font-family: Poppins-Medium;
   font-size: 16px;
   color: #000;
   line-height: 1.2;
@@ -338,7 +334,6 @@ iframe {
   right: 0px;
   pointer-events: none;
 
-  font-family: Poppins-Regular;
   color: #c80000;
   font-size: 13px;
   line-height: 1.4;
