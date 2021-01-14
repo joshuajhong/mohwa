@@ -27,7 +27,8 @@ const loginValidation = data => {
             .required(),
         password: Joi.string()
             .min(5)
-            .required()
+            .required(),
+        ["g-recaptcha-response"]: Joi.string().required()
     })
     return schema.validate(data)
 }

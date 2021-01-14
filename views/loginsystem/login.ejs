@@ -7,7 +7,6 @@
     <div class="container-login100">
         <div class="wrap-login100">
             <form id="g-recaptcha-response" class="login100-form validate-form" action="/user/login" method="POST">
-
                 <span class="login100-form-title p-b-34 p-t-27">
                     Log in
                 </span>
@@ -30,11 +29,11 @@
 
                 <title>reCAPTCHA demo: Explicit render after an onload callback</title>
                 <script type="text/javascript">
-                  var onloadCallback = function() {
+                var onloadCallback = function() {
                     grecaptcha.render('html_element', {
-                      'sitekey' : '6LesDbYZAAAAAH3zVJTnxv3wN3zUj7dYkLYg9Syc'
+                    'sitekey' : '6LesDbYZAAAAAH3zVJTnxv3wN3zUj7dYkLYg9Syc'
                     });
-                  };
+                };
                 </script>
                 <div id="html_element"></div>
                 <br>

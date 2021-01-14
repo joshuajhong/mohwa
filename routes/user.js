@@ -40,12 +40,40 @@ router.use(passport.session())
 router.get('/login', checkNotAuthenticated, (req, res) => {
     res.render('loginsystem/login.ejs')
 })
+
 // passport local login
 router.post('/login', checkNotAuthenticated, passport.authenticate('login', {
     successRedirect: '/',
     failureRedirect: '/user/login',
     failureFlash: true
 }))
+
+router.post('/login', function(req, res, next) {
+    let errors = [];
+    const { error } = loginValidation(req.body)
+    if(error) {
+        errors.push(req.flash('error', error.details[0].message ), res.render('loginsystem/login.ejs'))
+    } else {
+    passport.authenticate('login', function(err, user, info) {
+        if (err) { return next(err); }
+        if (!user) { 
+            req.flash('error', 'Incorrect ID or password' )
+            return res.render('loginsystem/login.ejs')
+        }
+        req.logIn(user, function(err) {
+            if (err) { return next(err); }
+            else {
+                User.findOne({ email: req.body.email })
+                .then(user => {
+                    res.status(200).redirect('/')
+                });
+            }
+        });
+    })(req, res, next);
+    }
+    }
+);
+
 
 // Validate an existing user and issue a JWT
 /* router.post('/login', function(req, res, next) {

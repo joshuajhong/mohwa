@@ -210,7 +210,7 @@ header form {
 
 .tm-navbar.scroll .tm-nav-link:hover,
 .tm-navbar.scroll .tm-nav-link.current,
-.dropdown:hover,
+.dropdown:hover, .currenttab,
 .tm-nav-link:hover {
   color: #d0d0a2;
 	background-color: #a2a2d0E6;
