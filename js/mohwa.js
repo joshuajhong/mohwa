@@ -50,8 +50,10 @@ $(window).scroll(function() {
 $(window).scroll(function(e){
   if($(document).scrollTop() > 10) {
     $('.tm-navbar').addClass("scroll");
+    $('.logo-image-opacity').addClass("scroll");
   } else {
     $('.tm-navbar').removeClass("scroll");
+    $('.logo-image-opacity').removeClass("scroll");
   }
 });
 
@@ -62,6 +64,12 @@ $(".navbar-collapse").collapse('hide');
 
 $('.navbar-collapse button').click(function(){
 $(".navbar-collapse").collapse('hide');
+});
+
+$(document).click(function(e) {
+	if (!$(e.target).is('.navbar')) {
+    	$('.navbar-collapse').collapse('hide');	    
+    }
 });
 
 // Scroll to corresponding section with animation

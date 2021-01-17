@@ -72,7 +72,7 @@ blockquote {
 
 header {
   background-color: hsl(0, 0%, 7%);
-	background: linear-gradient(90deg, #000000, #000000, #383838, #000000, #000000);
+	background: linear-gradient(90deg, #000000, #000000, #000000, #292929, #000000, #000000, #000000);
   color: #7a7a7a;
   height: 40px;
 	width: 100%;
@@ -148,7 +148,7 @@ header form {
   width: 100%;
   z-index:9999;
   /*setting alpha=0.3*/
-  background-color: #000000;
+  background-color: #00000000;
   transition: all 0.3s ease;
 	padding-top: 0%;
 	color: #ffffffB0;
@@ -170,14 +170,22 @@ header form {
   background-color: #000000;
 }
 
-.logo-image{
+.logo-image {
   height: 50px;
 	color: #ffffffE6;
 	-ms-transform: translateY(10%);
 	-webkit-transform: translateY(10%);
 	-moz-transform: translateY(10%);
 	-o-transform: translateY(10%);
-	transform: translateY(10%);
+  transform: translateY(10%);
+}
+
+.logo-image-opacity {
+  opacity: 0.4;
+}
+
+.logo-image-opacity.scroll {
+  opacity: 1;
 }
 
 .homebutton {
@@ -227,7 +235,6 @@ header form {
 
 .navbar-toggler {
   border: 1px rgba(192,192,192,0.5);
-  background-color: rgba(0,0,0, 0.5);;
 }
 
 .navbar-toggler-icon {
@@ -265,7 +272,6 @@ header form {
   cursor: pointer;
   outline: none;
   color: #ffffffB0;
-  background-color: #000;
   border: none;
   text-decoration: none;
   display: block;
@@ -1182,7 +1188,6 @@ p {
   }
 
   .navbar-collapse {
-    background-color: rgba(0,0,0, 1);;
     padding: 10px;
     border-radius: 3px;
   }

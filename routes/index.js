@@ -29,20 +29,22 @@ router.use(passport.session())
 router.get('/', function(req, res){
   if (req.user) {
       res.render('index', { 
-          name: req.user.name, 
-          code: `
-          <form action="/logout?_method=DELETE" method="POST">
-            <button type="submit">LOG OUT <i class="fas fa-sign-out-alt"></i></button>
-          </form>`
-        });
+        layout: 'layouts/specific',  
+        name: req.user.name, 
+        code: `
+        <form action="/logout?_method=DELETE" method="POST">
+          <button type="submit">LOG OUT <i class="fas fa-sign-out-alt"></i></button>
+        </form>`
+      });
   } else {
       res.render('index.ejs', { 
-          name: 'there this is Mohwa', 
-          code: `
-          <form action="/logout?_method=DELETE" method="POST">
-            <button type="submit">LOG IN <i class="fas fa-sign-in-alt"></i></button>
-          </form>`
-        })
+        layout: 'layouts/specific',  
+        name: 'there this is Mohwa', 
+        code: `
+        <form action="/logout?_method=DELETE" method="POST">
+          <button type="submit">LOG IN <i class="fas fa-sign-in-alt"></i></button>
+        </form>`
+      })
   }
 });
 

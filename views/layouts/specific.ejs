@@ -20,7 +20,6 @@
 </head>
 <body>
 
-  <%- include('../partials/header.ejs') %>
   <%- body %>
   <%- include('../partials/footer.ejs') %>
 
@@ -31,13 +30,6 @@
     <script src="../../vendor/jquery/jquery.fancybox.min.js"></script>
     <script src="../../vendor/jquery/jquery.singlePageNav.min.js"></script>
     <script src="../../js/easing.min.js"></script>
-    <script>
-      $(document).click(function(e) {
-        if (!$(e.target).is('.navbar')) {
-          $('.navbar-collapse').collapse('hide');	    
-        }
-      });
-    </script>
 
 </body>
 </html>
