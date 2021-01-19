@@ -48,7 +48,7 @@ $(window).scroll(function() {
 
 // Detect window scroll and update navbar
 $(window).scroll(function(e){
-  if($(document).scrollTop() > 10) {
+  if($(document).scrollTop() > 1) {
     $('.tm-navbar').addClass("scroll");
     $('.logo-image-opacity').addClass("scroll");
   } else {
@@ -197,8 +197,10 @@ var prevScrollpos = window.pageYOffset;
 window.onscroll = function() {
 var currentScrollPos = window.pageYOffset;
 if (prevScrollpos > currentScrollPos) {
+  document.getElementById("header").style.top = "0px";
   document.getElementById("tmNav").style.top = "40px";
 } else {
+  document.getElementById("header").style.top = "-40px";
   document.getElementById("tmNav").style.top = "0px";
 }
 prevScrollpos = currentScrollPos;
