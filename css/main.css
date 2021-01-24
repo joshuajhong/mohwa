@@ -297,7 +297,7 @@ header form {
 	min-height: 375px;
 	position: relative;
 	background-color: #000;
-  background-image: url(https://res.cloudinary.com/mohwa/image/upload/v1608465014/backgroundimages/20200923_213433_emuiqa.png);
+  background-image: url(../images/background/20200923_213433_emuiqa.png);
   background-repeat: no-repeat;
   background-size: contain;
 }
@@ -381,7 +381,7 @@ header form {
 #ABOUT {
   padding-bottom: 50px;
   background-color: #000;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(https://res.cloudinary.com/mohwa/image/upload/v1608465032/backgroundimages/custom_resized_f8271f1c-5434-4d6d-bdc6-6508bd690d59_l6lb0d.jpg);
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../images/background/custom_resized_f8271f1c-5434-4d6d-bdc6-6508bd690d59_l6lb0d.jpg);
   background-repeat: repeat-y;
 	background-attachment: scroll;
 	background-size: cover;
@@ -504,7 +504,7 @@ hr {
   min-height: 375px;
   color: white;
   background-color: black;
-	background-image: url(https://res.cloudinary.com/mohwa/image/upload/v1608465012/backgroundimages/Post_shopify_resizing_kn6ejl.jpg);
+	background-image: url(../images/background/Post_shopify_resizing_kn6ejl.jpg);
   background-size: contain;
   background-repeat: repeat-y;
   position: relative;
@@ -699,7 +699,7 @@ hr {
   padding-bottom: 50px;
   padding-top: 60px;
   text-align: center;
-	background-image: url(https://res.cloudinary.com/mohwa/image/upload/v1608465010/backgroundimages/20200626_223653_b2oatb.jpg);
+	background-image: url(../images/background/20200626_223653_b2oatb.jpg);
 	background-position: center;
 	background-size: cover;
 	background-attachment: fixed;
