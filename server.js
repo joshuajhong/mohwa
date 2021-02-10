@@ -84,6 +84,8 @@ app.use(passport.session());
 app.use(flash());
 
 // Pages
+const userController = require('./config/userController.js');
+
 app.get('/bookings', (req, res) => {
   res.render('forms/bookings.ejs')
 })
@@ -110,6 +112,20 @@ app.get('/blog', async (req, res) => {
         hide2: `-->`   
     })
   }
+})
+ 
+// app.put('/user/:userId', userController.allowIfLoggedin, userController.grantAccess('updateAny', 'profile'), userController.updateUser);
+ 
+// app.delete('/user/:userId', userController.allowIfLoggedin, userController.grantAccess('deleteAny', 'profile'), userController.deleteUser);
+
+app.get('/adminpanel', userController.allowIfLoggedin, userController.grantAccess('readAny', 'profile'), async (req, res) => {
+  const blogs = await Blog.find().sort({
+    createdAt: 'desc'
+  })
+  res.render('loginsystem/adminpanel.ejs', { 
+        blogs: blogs,
+        data: req.user
+    })
 })
 
 app.get('/terms', (req, res) => {

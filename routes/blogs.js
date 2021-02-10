@@ -3,6 +3,7 @@ const Blog = require('./../models/blog')
 const router = express.Router()
 const path = require('path')
 const { checkAuthenticated, checkNotAuthenticated } = require('../config/auth');
+const userController = require('../config/userController.js');
 
 const fs = require('fs') // needed for path.join string error
 const multer = require('multer')
@@ -21,11 +22,11 @@ const upload = multer({
   }
 })
 
-router.get('/new', checkAuthenticated, (req, res) => {
+router.get('/new', checkAuthenticated, userController.grantAccess('readAny', 'profile'), (req, res) => {
     res.render('blog/new', { blog: new Blog() })
 })
 
-router.get('/edit/:slug', checkAuthenticated, async (req, res) => {
+router.get('/edit/:slug', checkAuthenticated, userController.grantAccess('readAny', 'profile'), async (req, res) => {
     const blog = await Blog.findOne({ slug: req.params.slug })
     res.render('blog/edit', { blog: blog })
 })
@@ -33,19 +34,11 @@ router.get('/edit/:slug', checkAuthenticated, async (req, res) => {
 router.get('/:slug', async (req, res) => {
     const blog = await Blog.findOne({ slug: req.params.slug }) 
     if (blog == null) res.redirect('/')
-    if (req.user) {
-        res.render('blog/show', { 
-            blog: blog,
-            hide1: ``,
-            hide2: ``
-        })
-    } else {
-        res.render('blog/show', { 
-            blog: blog,
-            hide1:`<!--`,
-            hide2: `-->`
-        })
-    }
+    res.render('blog/show', { 
+        blog: blog,
+        hide1: ``,
+        hide2: ``
+    })
 })
 
 router.post('/', upload.single('cover'), async (req, res, next) => {
