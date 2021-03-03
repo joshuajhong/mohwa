@@ -22,6 +22,9 @@ const blogRouter = require('./routes/blogs')
 const contactRouter = require('./routes/contacts') 
 const bookingsRouter = require('./routes/bookings')
 const userRouter = require('./routes/user')
+const onlyfriendsRouter = require('./routes/onlyfriends')
+const pagesRouter = require('./routes/pages')
+const adminpanelRouter = require('./routes/adminpanel')
 
 // EJS
 app.set('view engine', 'ejs')
@@ -51,10 +54,16 @@ app.use('/blog', blogRouter)
 app.use('/contact', contactRouter)
 app.use('/bookings', bookingsRouter)
 app.use('/user', userRouter)
+app.use('/onlyfriends', onlyfriendsRouter)
+app.use('/', pagesRouter)
+app.use('/adminpanel', adminpanelRouter)
 
+const PORT = 3000;
 const http = require('http')
 const server = http.createServer(app);
-server.listen(process.env.PORT || 3000)
+server.listen(process.env.PORT || PORT, function () {
+  console.log(`Listening on port ${PORT}`)
+})
 
 // Passport Config
 const initializePassport = require('./config/passport')
@@ -67,14 +76,13 @@ initializePassport(
 // Express body parser
 app.use(express.urlencoded({ extended: true }));
 
+const MongoStore = require('connect-mongo')(session);
+const URI = process.env.DATABASE_URL;
+const store = new MongoStore({ url: URI });
+
 // Express session
-app.use(
-  session({
-    secret: process.env.SESSION_SECRET, //https://www.guidgenerator.com/online-guid-generator.aspx
-    resave: false,
-    saveUninitialized: false,
-  })
-);
+const sessionMiddleware = session({ secret: process.env.SESSION_SECRET, resave: false, saveUninitialized: false, store: store })
+app.use(sessionMiddleware);
 
 // Passport middleware
 app.use(passport.initialize());
@@ -83,70 +91,37 @@ app.use(passport.session());
 // Connect flash
 app.use(flash());
 
-// Pages
-const userController = require('./config/userController.js');
+// experimenting with web sockets below
+const socket = require("socket.io");
+const io = socket(server);
 
-app.get('/bookings', (req, res) => {
-  res.render('forms/bookings.ejs')
-})
+// convert a connect middleware to a Socket.IO middleware
+const wrap = middleware => (socket, next) => middleware(socket.request, {}, next);
 
-app.get('/contact', (req, res) => {
-  res.render('forms/contact.ejs')
-})
+io.use(wrap(sessionMiddleware));
+io.use(wrap(passport.initialize()));
+io.use(wrap(passport.session()));
 
-const Blog = require('./models/blog') 
-app.get('/blog', async (req, res) => {
-  const blogs = await Blog.find().sort({
-    createdAt: 'desc'
-  })
-  if (req.user) {
-    res.render('blog/index.ejs', { 
-        blogs: blogs,
-        hide1: ``,
-        hide2: `` 
-    })
+// authentication not working???? 
+io.use((socket, next) => {
+  if (socket.request.user) {
+    next();
   } else {
-    res.render('blog/index.ejs', { 
-        blogs: blogs,
-        hide1:`<!--`,
-        hide2: `-->`   
-    })
+    next(new Error('unauthorized'))
   }
-})
- 
-// app.put('/user/:userId', userController.allowIfLoggedin, userController.grantAccess('updateAny', 'profile'), userController.updateUser);
- 
-// app.delete('/user/:userId', userController.allowIfLoggedin, userController.grantAccess('deleteAny', 'profile'), userController.deleteUser);
+});
 
-app.get('/adminpanel', userController.allowIfLoggedin, userController.grantAccess('readAny', 'profile'), async (req, res) => {
-  const blogs = await Blog.find().sort({
-    createdAt: 'desc'
-  })
-  res.render('loginsystem/adminpanel.ejs', { 
-        blogs: blogs,
-        data: req.user
-    })
-})
+io.on('connect', (socket) => {
+  console.log(`new connection ${socket.id}`);
+  socket.on('whoami', (cb) => {
+    cb(socket.request.user ? socket.request.user.email : '');
+  });
 
-app.get('/terms', (req, res) => {
-  res.render('docs/terms')
-})
-
-app.get('/returns', (req, res) => {
-  res.render('docs/returns')
-})
-
-app.get('/privacy', (req, res) => {
-  res.render('docs/privacy')
-})
-
-app.get('/sitemap', (req, res) => {
-  res.render('docs/sitemap')
-})
-
-app.get('/credits', (req, res) => {
-  res.render('docs/credits')
-})
+  const session = socket.request.session;
+  console.log(`saving sid ${socket.id} in session ${session.id}`);
+  session.socketId = socket.id;
+  session.save();
+});
 
 // 404 redirect
 app.get('*', function(req, res){

@@ -38,6 +38,16 @@
         }
       });
     </script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+      let socket = io();
+      socket.on('connect', () => {
+            socketIdSpan.innerText = socket.id;
 
+            socket.emit('whoami', (username) => {
+              usernameSpan.innerText = username;
+            });
+          });
+    </script>
 </body>
 </html>

@@ -22,6 +22,25 @@ const upload = multer({
   }
 })
 
+router.get('/', async (req, res) => {
+    const blogs = await Blog.find().sort({
+      createdAt: 'desc'
+    })
+    if (req.user) {
+      res.render('blog/index.ejs', { 
+          blogs: blogs,
+          hide1: ``,
+          hide2: `` 
+      })
+    } else {
+      res.render('blog/index.ejs', { 
+          blogs: blogs,
+          hide1:`<!--`,
+          hide2: `-->`   
+      })
+    }
+  })
+
 router.get('/new', checkAuthenticated, userController.grantAccess('readAny', 'profile'), (req, res) => {
     res.render('blog/new', { blog: new Blog() })
 })

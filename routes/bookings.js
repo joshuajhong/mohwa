@@ -4,6 +4,10 @@ const { dirname } = require("path");
 const router = express.Router()
 const Booking = require('../models/booking') 
 
+router.get('/', (req, res) => {
+  res.render('forms/bookings.ejs')
+})
+
 // nodemailer setup
 const nodemailer = require('nodemailer'); 
 

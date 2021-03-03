@@ -1454,6 +1454,8 @@ p {
   padding-top: 80px;
   min-height: 100vh;
   color: #000;
+  padding-left: 5%;
+  padding-right: 5%;
 }
 
 #blogpage a {
@@ -1464,6 +1466,8 @@ p {
   padding-top: 80px;
   min-height: 100vh;
   color: #000;
+  padding-left: 5%;
+  padding-right: 5%;
 }
 
 #blogshow a {
