@@ -1,6 +1,5 @@
-const Joi = require('@hapi/joi')
+const Joi = require('joi');
 
-// Register validation
 const registerValidation = data => {
     const schema = Joi.object({
         name: Joi.string()
@@ -23,12 +22,11 @@ const registerValidation = data => {
 const loginValidation = data => {
     const schema = Joi.object({
         email: Joi.string()
-            .min(2)
+            .min(3)
             .required(),
         password: Joi.string()
-            .min(5)
-            .required(),
-        ["g-recaptcha-response"]: Joi.string().required()
+            .min(1)
+            .required()
     })
     return schema.validate(data)
 }

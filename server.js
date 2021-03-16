@@ -58,12 +58,29 @@ app.use('/onlyfriends', onlyfriendsRouter)
 app.use('/', pagesRouter)
 app.use('/adminpanel', adminpanelRouter)
 
+// Server
 const PORT = 3000;
 const http = require('http')
 const server = http.createServer(app);
 server.listen(process.env.PORT || PORT, function () {
   console.log(`Listening on port ${PORT}`)
 })
+
+// Express body parser
+app.use(express.urlencoded({ extended: true }));
+
+// Express session
+const MongoStore = require('connect-mongo')(session);
+const URI = process.env.DATABASE_URL;
+const store = new MongoStore({ url: URI });
+const sessionMiddleware = session({ 
+  secret: process.env.SESSION_SECRET, 
+  resave: false, 
+  key: 'connect.sid', 
+  saveUninitialized: true, 
+  store: store
+})
+app.use(sessionMiddleware);
 
 // Passport Config
 const initializePassport = require('./config/passport')
@@ -73,55 +90,12 @@ initializePassport(
     id => users.find(user => user.id === id)
 )
 
-// Express body parser
-app.use(express.urlencoded({ extended: true }));
-
-const MongoStore = require('connect-mongo')(session);
-const URI = process.env.DATABASE_URL;
-const store = new MongoStore({ url: URI });
-
-// Express session
-const sessionMiddleware = session({ secret: process.env.SESSION_SECRET, resave: false, saveUninitialized: false, store: store })
-app.use(sessionMiddleware);
-
 // Passport middleware
 app.use(passport.initialize());
 app.use(passport.session());
 
 // Connect flash
 app.use(flash());
-
-// experimenting with web sockets below
-const socket = require("socket.io");
-const io = socket(server);
-
-// convert a connect middleware to a Socket.IO middleware
-const wrap = middleware => (socket, next) => middleware(socket.request, {}, next);
-
-io.use(wrap(sessionMiddleware));
-io.use(wrap(passport.initialize()));
-io.use(wrap(passport.session()));
-
-// authentication not working???? 
-io.use((socket, next) => {
-  if (socket.request.user) {
-    next();
-  } else {
-    next(new Error('unauthorized'))
-  }
-});
-
-io.on('connect', (socket) => {
-  console.log(`new connection ${socket.id}`);
-  socket.on('whoami', (cb) => {
-    cb(socket.request.user ? socket.request.user.email : '');
-  });
-
-  const session = socket.request.session;
-  console.log(`saving sid ${socket.id} in session ${session.id}`);
-  session.socketId = socket.id;
-  session.save();
-});
 
 // 404 redirect
 app.get('*', function(req, res){

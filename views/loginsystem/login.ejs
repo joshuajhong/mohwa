@@ -27,15 +27,6 @@
                 <% } %>
                 </div>
 
-                <title>reCAPTCHA demo: Explicit render after an onload callback</title>
-                <script type="text/javascript">
-                var onloadCallback = function() {
-                    grecaptcha.render('html_element', {
-                    'sitekey' : '6LesDbYZAAAAAH3zVJTnxv3wN3zUj7dYkLYg9Syc'
-                    });
-                };
-                </script>
-                <div id="html_element"></div>
                 <br>
 
                 <div class="container-login100-form-btn">
@@ -47,15 +38,5 @@
         </div>
     </div>
 </div>
-    <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async defer></script>
     <script src="../../vendor/jquery/jquery-3.5.1.min.js"></script>
-    <script>
-        $("form").submit(function(event) {
-        var recaptcha = $("#g-recaptcha-response").val();
-        if (recaptcha === "") {
-            event.preventDefault();
-            alert("Please check the recaptcha");
-            }
-        });
-    </script>
 </body>

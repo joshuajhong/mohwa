@@ -40,13 +40,7 @@ router.get('/login', checkNotAuthenticated, (req, res) => {
 })
 
 // passport local login
-router.post('/login', checkNotAuthenticated, passport.authenticate('login', {
-    successRedirect: '/',
-    failureRedirect: '/user/login',
-    failureFlash: true
-}))
-
-router.post('/login', function(req, res, next) {
+router.post('/login', checkNotAuthenticated, function(req, res, next) {
     let errors = [];
     const { error } = loginValidation(req.body)
     if(error) {
