@@ -1257,7 +1257,8 @@ p {
 #contact {
   color: white;
   background-color: #000000;
-	background: linear-gradient(35deg, #d0a2a2, #a2a2d0);
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.95)), url(../images/background/custom_resized_f8271f1c-5434-4d6d-bdc6-6508bd690d59_l6lb0d.jpg);
+  background-size: cover;
   min-height: 100vh;
   position: relative;
 }
@@ -1265,7 +1266,8 @@ p {
 #bookings {
 	color: white;
 	background-color: #000000;
-	background: linear-gradient(35deg, #d0a2a2, #a2a2d0);
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.95)), url(../images/background/custom_resized_f8271f1c-5434-4d6d-bdc6-6508bd690d59_l6lb0d.jpg);
+  background-size: cover;
   min-height: 100vh;
 	position: relative;
 }

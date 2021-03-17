@@ -39,7 +39,7 @@ router.get('/', function(req, res){
   } else {
       res.render('index.ejs', { 
         layout: 'layouts/specific',  
-        name: 'there this is Mohwa', 
+        name: 'there this is mohwa', 
         code: `
         <form action="/logout?_method=DELETE" method="POST">
           <button type="submit">LOG IN <i class="fas fa-sign-in-alt"></i></button>
