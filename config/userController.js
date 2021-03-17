@@ -6,9 +6,7 @@ exports.grantAccess = function(action, resource) {
       try {
         const permission = roles.can(req.user.role)[action](resource);
         if (!permission.granted) {
-          return res.status(401).json({
-            error: "You don't have enough permission to perform this action"
-          });
+          return res.render('loginsystem/permissionerror.ejs')
         }
         next()
       } catch (error) {
@@ -21,9 +19,7 @@ exports.allowIfLoggedin = async (req, res, next) => {
     try {
         const user = req.user
         if (!user)
-        return res.status(401).json({
-            error: "You need to be logged in to access this route"
-        });
+        return res.status(401).redirect('/user/login')
         req.user = user;
         next();
     } catch (error) {
