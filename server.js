@@ -25,6 +25,7 @@ const userRouter = require('./routes/user')
 const onlyfriendsRouter = require('./routes/onlyfriends')
 const pagesRouter = require('./routes/pages')
 const adminpanelRouter = require('./routes/adminpanel')
+const visualsRouter = require('./routes/visuals')
 
 // EJS
 app.set('view engine', 'ejs')
@@ -57,6 +58,7 @@ app.use('/user', userRouter)
 app.use('/onlyfriends', onlyfriendsRouter)
 app.use('/', pagesRouter)
 app.use('/adminpanel', adminpanelRouter)
+app.use('/visuals', visualsRouter)
 
 // Server
 const PORT = 3000;
