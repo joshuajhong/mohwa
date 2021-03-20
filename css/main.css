@@ -1477,6 +1477,14 @@ p {
   text-decoration: underline;
 }
 
+#visuals {
+  padding-top: 80px;
+  min-height: 100vh;
+  color: #000;
+  padding-left: 2.5%;
+  padding-right: 2.5%;
+}
+
 #pagenotfound {
   background-color: #000;
   height: 100vh;

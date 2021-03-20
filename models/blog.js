@@ -60,7 +60,7 @@ blogSchema.virtual('coverImagePath').get(function() {
     if (this.coverImageName != null) {
       return path.join('/', coverImageBasePath, this.coverImageName)
     }
-  })
+})
 
 module.exports = mongoose.model('Blog', blogSchema)
 
