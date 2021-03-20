@@ -12,6 +12,10 @@ router.get('/', async (req, res) => {
     })
 })
 
+router.get('/new', (req, res) => {
+    res.render('visuals/new', { visual: new Visuals() })
+})
+
 router.get('/', visualsController.getAllVisual);
 router.post('/', visualsController.uploadImg, visualsController.newVisual)
 router.get('/:name', visualsController.getOneVisual);
