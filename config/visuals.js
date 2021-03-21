@@ -41,7 +41,7 @@ const newVisual = (req, res) => {
             })
             newVisual.save((err, data) => {
                 if(err) return res.json({Error: err});
-                return res.json(data);
+                return res.redirect('/visuals')
             })
         } else {
             return res.json({message: "Visual already exists"})
@@ -65,7 +65,7 @@ const deleteOneVisual = (req, res) => {
         if (err || !data) {
             return res.json({message: "Visual doesn't exist"});
         }
-        else return res.json({message: "Visual deleted"})
+        else return res.redirect('/visuals')
     })
 }
 
