@@ -3,39 +3,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mohwa | visuals</title>
 </head>
-<nav class="navbar navbar-expand-md fixed-tm-navbar">
-    <div class="container-fluid">
-        <a href="/"><button accesskey="h" class="homebutton">
-            <img src="images/logo.png" class="img-fluid logo-image" alt="MOHWA logo">
-        </button></a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <i class="fas fa-bars navbar-toggler-icon"></i>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-                <a class="nav-link tm-nav-link" href="/">HOME</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link tm-nav-link" href="../../blog">BLOG</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link tm-nav-link currenttab" href="../../visuals">VISUALS</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link tm-nav-link" href="/contact">CONTACT</a>
-            </li>
-        </ul>
-        </div>
-    </div>
-</nav>  
-<Section id="visuals" class="container-fluid">
-    <div class="float-right"><%- hide1 %><a href="/adminpanel" class="btn-dark text-white mb-4 btn-sm"><i class="fas fa-tachometer-alt"></i></a><%- hide2 %></div>
-    <div class="row">
-    <% visual.forEach(visual => { %>
-            <div class="col-lg-4 mb-4 mb-lg-0">
-                <img class="w-100 shadow-1-strong rounded mb-4" width="100%" src="<%= visual.visualImagePath %>" alt="<%= visual.name %>">
+<body>
+    <nav class="navbar navbar-expand-md fixed-tm-navbar">
+        <div class="container-fluid">
+            <a href="/"><button accesskey="h" class="homebutton">
+                <img src="images/logo.png" class="img-fluid logo-image" alt="MOHWA logo">
+            </button></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="fas fa-bars navbar-toggler-icon"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link tm-nav-link" href="/">HOME</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link tm-nav-link" href="../../blog">BLOG</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link tm-nav-link currenttab" href="../../visuals">VISUALS</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link tm-nav-link" href="/contact">CONTACT</a>
+                </li>
+            </ul>
             </div>
-      <% }) %>
-    </div>
-</Section>
+        </div>
+    </nav>  
+    <Section id="visuals" class="container-fluid">
+        <div class="float-right"><%- hide1 %><a href="/adminpanel" class="btn-dark text-white mb-4 btn-sm"><i class="fas fa-tachometer-alt"></i></a><%- hide2 %></div>
+        <div class="row">
+        <% visual.forEach(visual => { %>
+                <div class="col-lg-4 mb-4 mb-lg-0">
+                    <img class="w-100 shadow-1-strong rounded mb-4" width="100%" src="<%= visual.visualImagePath %>" alt="<%= visual.name %>">
+                </div>
+        <% }) %>
+        </div>
+    </Section>
+</body>
