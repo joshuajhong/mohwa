@@ -66,12 +66,6 @@ router.post('/', upload.single('cover'), async (req, res, next) => {
     next()
 }, saveArticleAndRedirect('new')) 
 
-/*router.put('/:slug', async (req, res, next) => {
-    req.blog = await Blog.findOne({ slug: req.params.slug })
-    next()
-}, saveArticleAndRedirect('edit')) */
-// multer does not support PUT requests
-
 router.post('/:slug', upload.single('cover'), async (req, res, next) => {
     req.blog = await Blog.findOne({ slug: req.params.slug })
     next()

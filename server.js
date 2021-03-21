@@ -11,11 +11,13 @@ const passport = require('passport');
 const session = require('express-session');
 const flash = require('express-flash')
 const helmet = require('helmet')
+const compression = require('compression');
 app.use(
   helmet({
     contentSecurityPolicy: false,
   })
 );
+app.use(compression());
 
 const indexRouter = require('./routes/index')
 const blogRouter = require('./routes/blogs') 
