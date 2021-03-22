@@ -101,12 +101,6 @@ $(function(){
     gallery: { enabled: true }
   });
 
-  $('.visualItem').magnificPopup({
-    delegate: 'a',
-    type: 'image',
-    gallery: { enabled: true }
-  });
-
   $('.picturerow').magnificPopup({
     delegate: 'a',
     type: 'image',
