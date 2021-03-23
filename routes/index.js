@@ -34,7 +34,13 @@ router.get('/', function(req, res){
         code: `
         <form action="/logout?_method=DELETE" method="POST">
           <button type="submit">LOG OUT <i class="fas fa-sign-out-alt"></i></button>
-        </form>`
+        </form>`,
+        code2: `<a id="dashboard" class="dropdown-button">DASHBOARD <i class="fas fa-tachometer-alt"></i></a>
+        <script>
+        document.getElementById("dashboard").onclick = function () {
+        location.href = "/adminpanel";
+        };
+        </script>`
       });
   } else {
       res.render('index.ejs', { 
@@ -43,7 +49,8 @@ router.get('/', function(req, res){
         code: `
         <form action="/logout?_method=DELETE" method="POST">
           <button type="submit">LOG IN <i class="fas fa-sign-in-alt"></i></button>
-        </form>`
+        </form>`,
+        code2: ``
       })
   }
 });
