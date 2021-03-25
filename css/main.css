@@ -1046,6 +1046,10 @@ figure.effect-honey:hover .discographylist {
  .form-control::placeholder {
    color:#d0d0a2;
  }
+
+ .comment::placeholder {
+  color: #8a8a8a;
+ }
 /*End of subscribe form*/
 
 /* Footer Style */

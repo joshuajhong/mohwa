@@ -21,7 +21,7 @@
                 </div>
                 <div class="card-text mb-2"><a href="blog/<%= blog.slug %>"><%= blog.description %></a></div>  
                 <a href="/blog/edit/<%= blog.slug %>" class="btn btn-info text-white"><i class="fas fa-edit"></i></a>
-                <form action="/blog/<%= blog.slug %>?_method=DELETE" method="POST" class="d-inline">
+                <form action="/blog/delete/<%= blog.slug %>?_method=DELETE" method="POST" class="d-inline">
                     <button onclick="return confirm('Are you sure you want to delete this item?');" type="submit" class="btn btn-danger"><i class="fas fa-trash"></i></button>
                 </form>  
             </div>

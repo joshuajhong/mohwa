@@ -41,7 +41,14 @@ const blogSchema = new mongoose.Schema({
     sanitizedHtml: {
         type: String,
         required: true
-    }
+    },
+    comments: [
+        { 
+            text: String, 
+            name: {type: String, required: true},
+            date: {type:String, default: new Date()} 
+        }
+    ]
 })
 
 blogSchema.pre('validate', function(next) {

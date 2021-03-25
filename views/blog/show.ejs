@@ -43,7 +43,27 @@
                 <div class="mb-4 pt-4">
                     <%- blog.sanitizedHtml %>
                 </div>
-                <div id="disqus_thread"></div>
+                <% for(var i= 0 ; i < blog.comments.length; i++) {%>
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <div class="row mb-2">
+                                <h5 class="card-title col-md-3"><strong><%=blog.comments[i].name %></strong></h5>
+                                <p class="card-text col-md-9">"<%=blog.comments[i].text %>"</p>
+                            </div>
+                            <small class="text-muted"><%=blog.comments[i].date %></small>
+                        </div>
+                    </div>
+                <% } %>
+                <form action="/blog/<%= blog.slug %>" method="POST" enctype="application/x-www-form-urlencoded">
+                    <div class="form-group">
+                        <label for="comment"><Strong>Comment</Strong></label>
+                        <input onClick="show()" type="text" required name="comment" id="comment" class="form-control comment" placeholder="What are your thoughts?" />
+                    </div>
+                    <div class="form-group">
+                        <input required type="text" id="name" class="form-control comment" placeholder="Name (required)" name="name" style="display:none;" />
+                    </div>
+                    <button type="submit" class="btn btn-light mb-5"><Strong>Comment</Strong> <i class="fas fa-comment"></i></button>
+                </form>
             </div>
             <div class="col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
             <div class="col-md-4 col-lg-4 col-xl-3 bloginfo rounded">
@@ -61,23 +81,15 @@
                 </div>
             </div>
         </div>
-            <script>
-                /**
-                *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
-                *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
-                /*
-                var disqus_config = function () {
-                this.page.url = "https://www.mohwamusic.com/";  // Replace PAGE_URL with your page's canonical URL variable
-                this.page.identifier = "blog/<%= blog.slug %>"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
-                };
-                */
-                (function() { // DON'T EDIT BELOW THIS LINE
-                var d = document, s = d.createElement('script');
-                s.src = 'https://mohwamusic.disqus.com/embed.js';
-                s.setAttribute('data-timestamp', +new Date());
-                (d.head || d.body).appendChild(s);
-                })();
-            </script>
-            <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
     </Section>
+    <script>
+        function show()
+            {
+                document.getElementById('name').style.display="block" ;
+            }
+
+            var showButton = document.getElementsByName('show')[0];
+
+            showButton.addEventListener('click', show, false);
+    </script>
 </body>

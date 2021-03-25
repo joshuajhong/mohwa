@@ -52,7 +52,7 @@ router.get('/edit/:slug', checkAuthenticated, userController.grantAccess('readAn
 
 router.get('/:slug', async (req, res) => {
     const blog = await Blog.findOne({ slug: req.params.slug }) 
-    if (blog == null) res.redirect('/')
+    if (blog == null) res.redirect('/blog')
     res.render('blog/show', { 
         blog: blog,
         hide1: ``,
@@ -61,17 +61,16 @@ router.get('/:slug', async (req, res) => {
 })
 
 router.post('/', upload.single('cover'), async (req, res, next) => {
-    console.log(req.file) //delete later
     req.blog = new Blog()
     next()
 }, saveArticleAndRedirect('new')) 
 
-router.post('/:slug', upload.single('cover'), async (req, res, next) => {
+router.post('/edit/:slug', upload.single('cover'), async (req, res, next) => {
     req.blog = await Blog.findOne({ slug: req.params.slug })
     next()
-}, saveArticleAndRedirect('edit')) 
+}, saveArticleAndRedirect('show')) // saveArticleAndRedirect('edit'))
 
-router.delete('/:slug', checkAuthenticated, async (req, res) => {
+router.delete('/delete/:slug', checkAuthenticated, async (req, res) => {
     await Blog.findOneAndDelete({ slug: req.params.slug })
     res.redirect('/blog')
 }) 
@@ -93,5 +92,26 @@ function saveArticleAndRedirect(path) {
         }
     }
 }
+
+router.route("/:slug").post(function(req, res) {
+    const comment = {
+        text: req.body.comment,
+        name: req.body.name,
+        date: new Date()
+    }
+    Blog.findOneAndUpdate({ slug: req.params.slug }, { comment: comment }, function(err, data) {
+      if (err) {
+        res.send(err);
+      } else {
+            data.comments.push(comment);
+            data.save(err => {
+            if (err) { 
+            return res.json({message: "Comment failed to add.", error:err});
+            }
+            return res.redirect(req.originalUrl)
+            })  
+        }
+    });
+});
 
 module.exports = router

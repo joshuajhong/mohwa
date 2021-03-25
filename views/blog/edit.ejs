@@ -9,7 +9,7 @@
             <h1 class="mb-4">Edit Blog</h1>
 
             <!-- <form action="/blog/<%= blog.slug %>?_method=PUT" method="POST"> -->
-            <form action="/blog/<%= blog.slug %>" enctype="multipart/form-data" method="POST">
+            <form action="/blog/edit/<%= blog.slug %>" enctype="multipart/form-data" method="POST">
                 <%- include('_form_fields') %>
             </form>
         </div>
