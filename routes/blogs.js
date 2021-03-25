@@ -66,7 +66,7 @@ router.post('/', upload.single('cover'), async (req, res, next) => {
 }, saveArticleAndRedirect('new')) 
 
 router.post('/edit/:slug', upload.single('cover'), async (req, res, next) => {
-    req.blog = await Blog.findOne({ slug: req.params.slug })
+    req.blog = await Blog.findOneAndUpdate({ slug: req.params.slug })
     next()
 }, saveArticleAndRedirect('show')) // saveArticleAndRedirect('edit'))
 

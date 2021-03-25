@@ -62,7 +62,7 @@
                         <input onClick="show()" type="text" required name="comment" id="comment" class="form-control comment" placeholder="What are your thoughts?" />
                     </div>
                     <div class="form-group">
-                        <input required type="text" id="name" class="form-control comment" placeholder="Name (required)" name="name" style="display:none;" />
+                        <input required type="text" id="commentElement" class="form-control comment" placeholder="Name (required)" name="name" style="display:none;" />
                     </div>
                     <button type="submit" class="btn btn-light mb-5"><Strong>Comment</Strong> <i class="fas fa-comment"></i></button>
                 </form>
@@ -87,11 +87,7 @@
     <script>
         function show()
             {
-                document.getElementById('name').style.display="block" ;
+                document.getElementById('commentElement').style.display="block" ;
             }
-
-            var showButton = document.getElementsByName('show')[0];
-
-            showButton.addEventListener('click', show, false);
     </script>
 </body>
