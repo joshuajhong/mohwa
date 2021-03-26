@@ -97,6 +97,7 @@ router.route("/:slug").post(function(req, res) {
     const comment = {
         text: req.body.comment,
         name: req.body.name,
+        email: req.body.email,
         date: new Date()
     }
     Blog.findOneAndUpdate({ slug: req.params.slug }, { comment: comment }, function(err, data) {

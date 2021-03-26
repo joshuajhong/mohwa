@@ -61,8 +61,10 @@
                         <label for="comment"><Strong>Post a comment</Strong></label>
                         <input onClick="show()" type="text" required name="comment" id="comment" class="form-control comment" placeholder="What are your thoughts?" />
                     </div>
-                    <div class="form-group">
-                        <input required type="text" id="commentElement" class="form-control comment" placeholder="Name (required)" name="name" style="display:none;" />
+                    <div id="commentElement" class="form-group" style="display:none;">
+                        <small class="text-muted">Fill in your details below to post a comment</small>
+                        <input required type="text"  class="form-control comment mb-2" placeholder="Name (required)" name="name"  />
+                        <input required type="email" class="form-control comment mb-2" placeholder="Email (required - never made public)" name="email" />
                     </div>
                     <button type="submit" class="btn btn-light mb-5"><Strong>Comment</Strong> <i class="fas fa-comment"></i></button>
                 </form>
