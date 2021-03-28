@@ -50,10 +50,6 @@ blockquote {
   padding: 2% 0% 0% 0%;
 }
 
-.tm-text-primary {
-  color: #37A;
-}
-
 .tm-font-big {
   font-size: 1.25rem;
 }
@@ -401,6 +397,7 @@ header form {
   font-size: 2.7rem;
   color: black;
   font-weight: normal;
+  color: #d0d0a2;
 }
 
 .tm-intro-text {
@@ -413,7 +410,7 @@ header form {
   border-color: rgb(0,0,0);
   border-radius: 10px;
   margin: 0 10% 0 10%;
-  background-color: rgba(0,0,0,0.5);
+  background-color: rgba(0,0,0,0.8);
 }
 
 .tm-intro-text2 {
@@ -433,7 +430,8 @@ header form {
 
 .tm-intro-text-center {
 	text-align:center;
-	font-size: 20px;
+  font-size: 20px;
+  color: #d0d0a2;
 }
 
 .tm-intro-text2 ul {
@@ -474,7 +472,7 @@ header form {
 }
 
 .tm-text-primary {
-  color: white;
+  color: #d0d0a2;
 }
 
 .table1 {
@@ -487,7 +485,7 @@ header form {
   color:white;
   }
 tr:nth-child(even) {
-  background-color: rgba(0,0,0,0.5);}
+  background-color: rgba(0,0,0,0.8);}
 
 th, td {
   text-align: center;
