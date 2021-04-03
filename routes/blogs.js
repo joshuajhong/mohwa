@@ -27,17 +27,17 @@ router.get('/', async (req, res) => {
       createdAt: 'desc'
     })
     if (req.user) {
-      res.render('blog/index.ejs', { 
-          blogs: blogs,
-          hide1: ``,
-          hide2: `` 
-      })
+        res.render('blog/index.ejs', { 
+            blogs: blogs,
+            hide1: ``,
+            hide2: `` 
+        })
     } else {
-      res.render('blog/index.ejs', { 
-          blogs: blogs,
-          hide1:`<!--`,
-          hide2: `-->`   
-      })
+        res.render('blog/index.ejs', { 
+            blogs: blogs,
+            hide1:`<!--`,
+            hide2: `-->`   
+        })
     }
   })
 
@@ -53,11 +53,19 @@ router.get('/edit/:slug', checkAuthenticated, userController.grantAccess('readAn
 router.get('/:slug', async (req, res) => {
     const blog = await Blog.findOne({ slug: req.params.slug }) 
     if (blog == null) res.redirect('/blog')
-    res.render('blog/show', { 
-        blog: blog,
-        hide1: ``,
-        hide2: ``
-    })
+    if (req.user) {
+        res.render('blog/show', {
+            blog: blog,
+            hide1: ``,
+            hide2: ``
+        })
+    } else {
+        res.render('blog/show', { 
+            blog: blog,
+            hide1: `<!--`,
+            hide2: `-->`
+        })
+    }
 })
 
 router.post('/', upload.single('cover'), async (req, res, next) => {
