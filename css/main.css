@@ -979,7 +979,7 @@ figure.effect-honey:hover .discographylist {
 
 .subscribe-form {
   background-color: rgba(192,192,192,0.1);
-	background: linear-gradient(69deg, #000000, #262626, #000000);
+	background: linear-gradient(69deg, #000000, #1f1f1f, #000000);
   padding: 60px 0px;
   text-align: center;
 }
@@ -1494,6 +1494,15 @@ p {
   padding: 20px;
   margin-top: 20px;
   color: #d0d0a2;
+}
+
+.btn-circle {
+  width: 20px;
+  height: 20px;
+  padding: 1px 0px;
+  border-radius: 15px;
+  font-size: 13px;
+  text-align: center;
 }
 
 #visuals {

@@ -93,7 +93,7 @@ function saveArticleAndRedirect(path) {
     }
 }
 
-router.route("/:slug").post(function(req, res) {
+router.route('/comment/:slug').post(function(req, res) {
     const comment = {
         text: req.body.comment,
         name: req.body.name,
@@ -101,18 +101,35 @@ router.route("/:slug").post(function(req, res) {
         date: new Date()
     }
     Blog.findOneAndUpdate({ slug: req.params.slug }, { comment: comment }, function(err, data) {
-      if (err) {
-        res.send(err);
-      } else {
+        if (err) {
+            res.send(err);
+        } else {
             data.comments.push(comment);
             data.save(err => {
-            if (err) { 
-            return res.json({message: "Comment failed to add.", error:err});
-            }
-            return res.redirect(req.originalUrl)
+                if (err) { 
+                    return res.json({message: "Comment failed to add.", error:err});
+                }
+                return res.redirect('/blog/' + req.params.slug)
             })  
         }
     });
 });
+
+router.route('/:slug/:commentsId').delete(checkAuthenticated, userController.grantAccess('readAny', 'profile'), function(req, res) {
+    const comment = req.params.commentsId
+    Blog.findOneAndUpdate({ slug: req.params.slug }, { comment: comment}, function(err, data) {
+        if (err) {
+            res.sendDate(err);
+        } else {
+            data.comments.remove(comment);
+            data.save(err => {
+                if (err) {
+                    return res.json({message: 'Failed to remove', error: err});
+                }
+                return res.redirect('/blog/' + req.params.slug)
+            })
+        }
+   }) 
+})
 
 module.exports = router

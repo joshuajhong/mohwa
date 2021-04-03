@@ -9,6 +9,13 @@ const dompurify = createDomPurify(new JSDOM().window)
 const coverImageBasePath = '/uploads'
 const path = require('path')
 
+const commentSchema = new mongoose.Schema({
+    text: String, 
+    name: {type: String, required: true},
+    email: {type: String, required: true, trim: true},
+    date: {type:String, default: new Date()},
+})
+
 const blogSchema = new mongoose.Schema({
     title: {
         type: String,
@@ -42,14 +49,7 @@ const blogSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    comments: [
-        { 
-            text: String, 
-            name: {type: String, required: true},
-            email: {type: String, required: true, trim: true},
-            date: {type:String, default: new Date()} 
-        }
-    ]
+    comments: [commentSchema]
 })
 
 blogSchema.pre('validate', function(next) {
