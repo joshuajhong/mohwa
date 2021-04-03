@@ -13,7 +13,7 @@ const commentSchema = new mongoose.Schema({
     text: String, 
     name: {type: String, required: true},
     email: {type: String, required: true, trim: true},
-    date: {type:String, default: new Date()},
+    date: {type: String, default: new Date()},
 })
 
 const blogSchema = new mongoose.Schema({

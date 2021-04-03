@@ -20,15 +20,6 @@ const uploadImg = multer({
   }
 }).single('image'); 
 
-const getAllVisual = (req, res) => {
-    Visuals.find({}, (err, data) => {
-        if (err) {
-            return res.json({Error: err});
-        }
-        return res.json(data)
-    })
-}
-
 const newVisual = (req, res) => {
     Visuals.findOne({name: req.body.name}, (data) => {
         if (data === null) {
@@ -71,7 +62,6 @@ const deleteOneVisual = (req, res) => {
 
 //export controller functions
 module.exports = {
-    getAllVisual,
     uploadImg, 
     newVisual,
     getOneVisual,

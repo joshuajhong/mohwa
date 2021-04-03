@@ -28,7 +28,6 @@ router.get('/new', checkAuthenticated, userController.grantAccess('readAny', 'pr
     res.render('visuals/new', { visual: new Visuals() })
 })
 
-router.get('/', visualsController.getAllVisual);
 router.post('/', visualsController.uploadImg, visualsController.newVisual)
 router.get('/:name', visualsController.getOneVisual);
 router.delete('/:name', visualsController.deleteOneVisual);
