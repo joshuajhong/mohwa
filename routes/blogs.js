@@ -23,54 +23,12 @@ const upload = multer({
   }
 })
 
-router.get('/', async (req, res) => {
-    const blogs = await Blog.find().sort({
-      createdAt: 'desc'
-    })
-    if (req.user) {
-        res.render('blog/index.ejs', { 
-            blogs: blogs,
-            hide1: ``,
-            hide2: `` 
-        })
-    } else {
-        res.render('blog/index.ejs', { 
-            blogs: blogs,
-            hide1:`<!--`,
-            hide2: `-->`   
-        })
-    }
-  })
-
-router.get('/new', checkAuthenticated, userController.grantAccess('readAny', 'profile'), (req, res) => {
-    res.render('blog/new', { blog: new Blog() })
-})
-
-router.get('/edit/:slug', checkAuthenticated, userController.grantAccess('readAny', 'profile'), async (req, res) => {
-    const blog = await Blog.findOne({ slug: req.params.slug })
-    res.render('blog/edit', { blog: blog })
-})
-
-router.get('/:slug', async (req, res) => {
-    const blog = await Blog.findOne({ slug: req.params.slug }) 
-    if (blog == null) res.redirect('/blog')
-    if (req.user) {
-        res.render('blog/show', {
-            blog: blog,
-            hide1: ``,
-            hide2: ``
-        })
-    } else {
-        res.render('blog/show', { 
-            blog: blog,
-            hide1: `<!--`,
-            hide2: `-->`
-        })
-    }
-})
-
+router.get('/', blogController.getBlogHomepage)
+router.get('/new', checkAuthenticated, userController.grantAccess('readAny', 'profile'), blogController.getNewBlog)
+router.get('/edit/:slug', checkAuthenticated, userController.grantAccess('readAny', 'profile'), blogController.getEditBlog)
+router.get('/:slug', blogController.showBlog)
 router.post('/', upload.single('cover'), blogController.newBlog, saveArticleAndRedirect('new')) 
-router.post('/edit/:slug', upload.single('cover'), blogController.editBlog, saveArticleAndRedirect('show')) // saveArticleAndRedirect('edit'))
+router.post('/edit/:slug', upload.single('cover'), blogController.editBlog, saveArticleAndRedirect('show'))
 router.delete('/delete/:slug', checkAuthenticated, blogController.deleteBlog) 
 router.route('/comment/:slug').post(blogController.postComment);
 router.route('/:slug/:commentsId').delete(checkAuthenticated, userController.grantAccess('readAny', 'profile'), blogController.deleteComment)

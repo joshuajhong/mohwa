@@ -1,6 +1,52 @@
 const Blog =  require('./../models/blog')
 const path = require('path')
 
+const getBlogHomepage = async (req, res) => {
+    const blogs = await Blog.find().sort({
+      createdAt: 'desc'
+    })
+    if (req.user) {
+        res.render('blog/index.ejs', { 
+            blogs: blogs,
+            hide1: ``,
+            hide2: `` 
+        })
+    } else {
+        res.render('blog/index.ejs', { 
+            blogs: blogs,
+            hide1:`<!--`,
+            hide2: `-->`   
+        })
+    }
+}
+
+const getNewBlog =  (req, res) => {
+    res.render('blog/new', { blog: new Blog() })
+}
+
+const getEditBlog =  async (req, res) => {
+    const blog = await Blog.findOne({ slug: req.params.slug })
+    res.render('blog/edit', { blog: blog })
+}
+
+const showBlog = async (req, res) => {
+    const blog = await Blog.findOne({ slug: req.params.slug }) 
+    if (blog == null) res.redirect('/blog')
+    if (req.user) {
+        res.render('blog/show', {
+            blog: blog,
+            hide1: ``,
+            hide2: ``
+        })
+    } else {
+        res.render('blog/show', { 
+            blog: blog,
+            hide1: `<!--`,
+            hide2: `-->`
+        })
+    }
+}
+
 const newBlog = async (req, res, next) => {
     req.blog = new Blog()
     next()
@@ -56,6 +102,10 @@ const deleteComment = (req, res) => {
 }
 
 module.exports = {
+    getBlogHomepage,
+    getNewBlog,
+    getEditBlog,
+    showBlog,
     newBlog,
     editBlog,
     deleteBlog,
