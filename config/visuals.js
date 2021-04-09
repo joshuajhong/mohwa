@@ -20,6 +20,29 @@ const uploadImg = multer({
   }
 }).single('image'); 
 
+const getVisualHomePage = async (req, res) => {
+    const visuals = await Visuals.find().sort({
+      createdAt: 'desc'
+    })
+    if (req.user) {
+        res.render('visuals/index.ejs', { 
+            visual: visuals,
+            hide1: ``,
+            hide2: `` 
+        })
+      } else {
+        res.render('visuals/index.ejs', { 
+            visual: visuals,
+            hide1:`<!--`,
+            hide2: `-->`   
+        })
+    }
+}
+
+const getNewVisual = (req, res) => {
+    res.render('visuals/new', { visual: new Visuals() })
+}
+
 const newVisual = (req, res) => {
     Visuals.findOne({name: req.body.name}, (data) => {
         if (data === null) {
@@ -60,10 +83,39 @@ const deleteOneVisual = (req, res) => {
     })
 }
 
+const getEditVisual = async (req, res) => {
+    let name = req.params.name;
+    const visual = await Visuals.findOne({ name: name })
+    if (visual == null) {res.redirect('/adminpanel')}
+    else return res.render('visuals/edit', { visual: visual })
+}
+
+const editOneVisual = async (req, res) => {
+    let name = req.params.name;
+    req.visual = await Visuals.findOneAndUpdate({ name: name }, { upsert: true }, () => {
+        const fileName = req.file != null ? req.file.filename : null
+        let visual = req.visual
+        visual.name = req.body.name,
+        visual.imageName = fileName,
+        visual.description = req.body.description,
+        visual.keywords = req.body.keywords
+        try {
+            visual = visual.save()
+            res.redirect(`/visuals`)
+        } catch (e) {
+            res.render(`visuals`)
+        }
+    })
+}
+
 //export controller functions
 module.exports = {
+    getVisualHomePage,
+    getNewVisual,
     uploadImg, 
     newVisual,
     getOneVisual,
-    deleteOneVisual
+    deleteOneVisual,
+    getEditVisual,
+    editOneVisual
 };
