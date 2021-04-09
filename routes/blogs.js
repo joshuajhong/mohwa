@@ -1,5 +1,4 @@
 const express = require('express')
-const Blog = require('./../models/blog')
 const blogController = require('../config/blogs')
 const router = express.Router()
 const path = require('path')

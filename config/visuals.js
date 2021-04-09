@@ -3,7 +3,6 @@ const multer = require('multer')
 
 const path = require('path')
 const fs = require('fs') // needed for path.join string error
-
 const uploadPath = path.join('public', Visuals.visualImageBasePath)
 const storage = multer.diskStorage({
     destination: uploadPath,
@@ -11,7 +10,6 @@ const storage = multer.diskStorage({
         cb(null, new Date().toISOString() + file.originalname);
     }
 })
-
 const imageMimeTypes = ['image/jpeg', 'image/png', 'images/gif']
 const uploadImg = multer({
   storage: storage,
