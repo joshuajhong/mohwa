@@ -1,5 +1,21 @@
 const Blog =  require('./../models/blog')
 const path = require('path')
+const fs = require('fs') // needed for path.join string error
+const multer = require('multer')
+const uploadPath = path.join('public', Blog.coverImageBasePath)
+const storage = multer.diskStorage({
+    destination: uploadPath,
+    filename: function(req, file, cb) {
+        cb(null, new Date().toISOString() + file.originalname);
+    }
+})
+const imageMimeTypes = ['image/jpeg', 'image/png', 'images/gif']
+const uploadImg = multer({
+  storage: storage,
+  fileFilter: (req, file, callback) => {
+    callback(null, imageMimeTypes.includes(file.mimetype))
+  }
+}).single('cover')
 
 const getBlogHomepage = async (req, res) => {
     const blogs = await Blog.find().sort({
@@ -103,6 +119,7 @@ const deleteComment = (req, res) => {
 }
 
 module.exports = {
+    uploadImg,
     getBlogHomepage,
     getNewBlog,
     getEditBlog,

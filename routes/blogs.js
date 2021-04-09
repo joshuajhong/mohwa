@@ -6,29 +6,12 @@ const path = require('path')
 const { checkAuthenticated, checkNotAuthenticated } = require('../config/auth');
 const userController = require('../config/userController.js');
 
-const fs = require('fs') // needed for path.join string error
-const multer = require('multer')
-const uploadPath = path.join('public', Blog.coverImageBasePath)
-const storage = multer.diskStorage({
-    destination: uploadPath,
-    filename: function(req, file, cb) {
-        cb(null, new Date().toISOString() + file.originalname);
-    }
-})
-const imageMimeTypes = ['image/jpeg', 'image/png', 'images/gif']
-const upload = multer({
-  storage: storage,
-  fileFilter: (req, file, callback) => {
-    callback(null, imageMimeTypes.includes(file.mimetype))
-  }
-})
-
 router.get('/', blogController.getBlogHomepage)
 router.get('/new', checkAuthenticated, userController.grantAccess('readAny', 'profile'), blogController.getNewBlog)
 router.get('/edit/:slug', checkAuthenticated, userController.grantAccess('readAny', 'profile'), blogController.getEditBlog)
 router.get('/:slug', blogController.showBlog)
-router.post('/', upload.single('cover'), blogController.newBlog, saveArticleAndRedirect('new')) 
-router.post('/edit/:slug', upload.single('cover'), blogController.editBlog, saveArticleAndRedirect('show'))
+router.post('/', blogController.uploadImg, blogController.newBlog, saveArticleAndRedirect('new')) 
+router.post('/edit/:slug', blogController.uploadImg, blogController.editBlog, saveArticleAndRedirect('show'))
 router.delete('/delete/:slug', checkAuthenticated, blogController.deleteBlog) 
 router.route('/comment/:slug').post(blogController.postComment);
 router.route('/:slug/:commentsId').delete(checkAuthenticated, userController.grantAccess('readAny', 'profile'), blogController.deleteComment)
