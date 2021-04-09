@@ -1,6 +1,5 @@
 const Visuals = require('./../models/visual')
 const multer = require('multer')
-
 const path = require('path')
 const fs = require('fs') // needed for path.join string error
 const uploadPath = path.join('public', Visuals.visualImageBasePath)
@@ -88,22 +87,9 @@ const getEditVisual = async (req, res) => {
     else return res.render('visuals/edit', { visual: visual })
 }
 
-const editOneVisual = async (req, res) => {
-    let name = req.params.name;
-    req.visual = await Visuals.findOneAndUpdate({ name: name }, { upsert: true }, () => {
-        const fileName = req.file != null ? req.file.filename : null
-        let visual = req.visual
-        visual.name = req.body.name,
-        visual.imageName = fileName,
-        visual.description = req.body.description,
-        visual.keywords = req.body.keywords
-        try {
-            visual = visual.save()
-            res.redirect(`/visuals`)
-        } catch (e) {
-            res.render(`visuals`)
-        }
-    })
+const editOneVisual = async (req, res, next) => {
+    req.visual = await Visuals.findOneAndUpdate({ name: req.params.name }, { upsert: true })
+    next()
 }
 
 //export controller functions
@@ -115,5 +101,19 @@ module.exports = {
     getOneVisual,
     deleteOneVisual,
     getEditVisual,
-    editOneVisual
+    editOneVisual,
+    saveVisualAndRedirect: function(req, res) {
+        const fileName = req.file != null ? req.file.filename : null
+        let visual = req.visual
+        visual.name = req.body.name
+        visual.imageName = fileName
+        visual.description = req.body.description
+        visual.keywords = req.body.keywords
+        try {
+            visual = visual.save()
+            res.redirect(`/visuals`)
+        } catch (e) {
+            res.render(`visuals`)
+        }
+    }
 };

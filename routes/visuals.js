@@ -10,7 +10,6 @@ router.post('/', visualsController.uploadImg, visualsController.newVisual)
 router.get('/:name', visualsController.getOneVisual);
 router.delete('/:name', visualsController.deleteOneVisual);
 router.get('/edit/:name', checkAuthenticated, userController.grantAccess('readAny', 'profile'), visualsController.getEditVisual)
-router.post('/edit/:name', visualsController.uploadImg, visualsController.editOneVisual)
-
+router.post('/edit/:name', visualsController.uploadImg, visualsController.editOneVisual, visualsController.saveVisualAndRedirect)
 
 module.exports = router
