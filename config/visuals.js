@@ -60,14 +60,13 @@ const newVisual = (req, res) => {
     })
 }
 
-const getOneVisual = (req, res) => {
-    let name = req.params.name;
-    Visuals.findOne({name: name}, (err, data) => {
-        if(err || !data) {
-            return res.json({message: "Visual doesn't exist"});
-        }
-        else return res.json(data);
-    })
+const getOneVisual = async (req, res) => {
+    const visual = await Visuals.findOne({ name: req.params.name })
+    if (visual == null) {
+        res.redirect('/visuals')
+    } else {
+        return res.render('visuals/show', { visual: visual })
+    }
 }
 
 const deleteOneVisual = (req, res) => {
@@ -76,7 +75,7 @@ const deleteOneVisual = (req, res) => {
         if (err || !data) {
             return res.json({message: "Visual doesn't exist"});
         }
-        else return res.redirect('/visuals')
+        else return res.redirect('/adminpanel')
     })
 }
 
@@ -111,7 +110,7 @@ module.exports = {
         visual.keywords = req.body.keywords
         try {
             visual = visual.save()
-            res.redirect(`/visuals`)
+            res.redirect(`/adminpanel`)
         } catch (e) {
             res.render(`visuals`)
         }

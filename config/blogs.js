@@ -76,7 +76,7 @@ const editBlog =  async (req, res, next) => {
 
 const deleteBlog = async (req, res) => {
     await Blog.findOneAndDelete({ slug: req.params.slug })
-    res.redirect('/blog')
+    res.redirect('/adminpanel')
 }
 
 const postComment = (req, res) => {
