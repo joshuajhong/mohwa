@@ -70,12 +70,19 @@ const getOneVisual = async (req, res) => {
 }
 
 const deleteOneVisual = (req, res) => {
-    let name = req.params.name;
-    Visuals.deleteOne({name: name}, (err, data) => {
-        if (err || !data) {
-            return res.json({message: "Visual doesn't exist"});
+    Visuals.findOneAndDelete({ name: req.params.name }, function(err, visual) {
+        if (err) {res.send(err);}
+        if (visual.imageName == null) {res.redirect('/adminpanel')}
+        else {
+            const visualImagePath = path.join('public', Visuals.visualImageBasePath, `${visual.imageName}`)
+            fs.unlink(visualImagePath, (err) => {
+                if (err) {
+                    console.error(err)
+                    return
+                }
+                res.redirect('/adminpanel')
+            })
         }
-        else return res.redirect('/adminpanel')
     })
 }
 

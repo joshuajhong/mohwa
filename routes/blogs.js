@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const blogController = require('../config/blogs')
-const { checkAuthenticated, checkNotAuthenticated } = require('../config/auth');
+const { checkAuthenticated } = require('../config/auth');
 const userController = require('../config/userController.js');
 
 router.get('/', blogController.getBlogHomepage)

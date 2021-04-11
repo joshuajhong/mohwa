@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const visualsController = require('../config/visuals')
-const { checkAuthenticated, checkNotAuthenticated } = require('../config/auth');
+const { checkAuthenticated } = require('../config/auth');
 const userController = require('../config/userController.js');
 
 router.get('/', visualsController.getVisualHomePage)

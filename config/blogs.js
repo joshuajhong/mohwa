@@ -2,6 +2,7 @@ const Blog =  require('./../models/blog')
 const path = require('path')
 const fs = require('fs') // needed for path.join string error
 const multer = require('multer')
+const { error } = require('console')
 const uploadPath = path.join('public', Blog.coverImageBasePath)
 const storage = multer.diskStorage({
     destination: uploadPath,
@@ -69,14 +70,26 @@ const newBlog = async (req, res, next) => {
     next()
 }
 
-const editBlog =  async (req, res, next) => {
+const editBlog = async (req, res, next) => {
     req.blog = await Blog.findOneAndUpdate({ slug: req.params.slug }, { upsert: true })
     next()
 }
 
-const deleteBlog = async (req, res) => {
-    await Blog.findOneAndDelete({ slug: req.params.slug })
-    res.redirect('/adminpanel')
+const deleteBlog = (req, res) => {
+    Blog.findOneAndDelete({ slug: req.params.slug }, function(err, blog) {
+        if (err) {res.send(err);}
+        if (blog.coverImageName == null) {res.redirect('/adminpanel')}
+        else {
+            const blogImagePath = path.join('public', Blog.coverImageBasePath, `${blog.coverImageName}`)
+            fs.unlink(blogImagePath, (err) => {
+                if (err) {
+                    console.error(err)
+                    return
+                }
+                res.redirect('/adminpanel')
+            })
+        }
+    })
 }
 
 const postComment = (req, res) => {
