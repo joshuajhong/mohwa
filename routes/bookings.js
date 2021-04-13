@@ -12,40 +12,39 @@ router.get('/', (req, res) => {
 })
 
 // nodemailer setup
-const createTransporter = async () => {
-  const oauth2Client = new OAuth2(
-    process.env.CLIENT_ID,
-    process.env.CLIENT_SECRET,
-    "https://developers.google.com/oauthplayground"
-  );
+const oauth2Client = new OAuth2(
+  process.env.CLIENT_ID,
+  process.env.CLIENT_SECRET,
+  "https://developers.google.com/oauthplayground"
+);
 
-  oauth2Client.setCredentials({
-    refresh_token: process.env.REFRESH_TOKEN
-  });
+oauth2Client.setCredentials({
+  refresh_token: process.env.REFRESH_TOKEN
+});
 
-  const accessToken = await new Promise((resolve, reject) => {
-    oauth2Client.getAccessToken((err, token) => {
-      if (err) {
-        reject();
+async function createTransporter() {
+  try {
+    const accessToken = await oauth2Client.getAccessToken()
+
+    const transport = nodemailer.createTransport({
+      host: 'smtp.gmail.com',
+      service: "gmail",
+      port: process.env.PORT || 3000,
+      auth: {
+        type: "OAuth2",
+        user: process.env.DB_USER,
+        accessToken,
+        clientId: process.env.CLIENT_ID,
+        clientSecret: process.env.CLIENT_SECRET,
+        refreshToken: process.env.REFRESH_TOKEN
       }
-      resolve(token);
-    });
-  });
+    }) 
 
-  const transporter = nodemailer.createTransport({
-    service: "gmail",
-    auth: {
-      type: "OAuth2",
-      user: process.env.DB_USER,
-      accessToken,
-      clientId: process.env.CLIENT_ID,
-      clientSecret: process.env.CLIENT_SECRET,
-      refreshToken: process.env.REFRESH_TOKEN
-    }
-  });
-
-  return transporter;
-};
+    return transport;
+  } catch (error) {
+    return error
+  }
+}
 
 const sendEmail = async (emailOptions) => {
   let emailTransporter = await createTransporter();
@@ -64,7 +63,7 @@ router.post('/', (req, res) => {
     }
   })
     // send booking form to my email
-    let mailBookingForm = { 
+    const mailBookingForm = { 
       from: process.env.DB_USER,
       to: `${process.env.EMAIL_PERSONAL}, ${req.body.email}`,
       subject: 'Booking Form', 
@@ -90,13 +89,10 @@ router.post('/', (req, res) => {
       <h3>Message</h3>
         <p>${req.body.message}</p>`
     }; 
-    sendEmail(mailBookingForm, function(err, data) { 
-      if(err) { 
-          console.log('Error Occurs'); 
-      } else { 
-          console.log('Email sent successfully'); 
-      } 
-    });
+  // send contact form to my email
+  sendEmail(mailBookingForm)
+  .then(console.log('Email sent successfully'))
+  .catch((error) => console.log(error.message))
 })
 
 module.exports = router;
